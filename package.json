@@ -1,0 +1,23 @@
+{
+  "name": "createaculture",
+  "version": "1.0.0",
+  "description": "app to create a culture summary",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jimmy6strings/CreateACulture.git"
+  },
+  "keywords": [
+    "culture",
+    "summary"
+  ],
+  "author": "HRR22 HackstreetBoys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jimmy6strings/CreateACulture/issues"
+  },
+  "homepage": "https://github.com/Jimmy6strings/CreateACulture#readme"
+}
