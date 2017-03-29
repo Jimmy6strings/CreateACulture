@@ -22,9 +22,13 @@
   "homepage": "https://github.com/Jimmy6strings/CreateACulture#readme",
   "dependencies": {
     "angular": "^1.6.3",
+    "body-parser": "^1.17.1",
     "bootstrap": "^4.0.0-alpha.4",
     "express": "^4.15.2",
+    "jwt-simple": "^0.5.1",
     "mongodb": "^2.2.25",
-    "mongoose": "^4.9.2"
+    "mongoose": "^4.9.2",
+    "morgan": "^1.8.1",
+    "q": "^1.5.0"
   }
 }
