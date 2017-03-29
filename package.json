@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jimmy6strings/CreateACulture.git"
+    "url": "git+https://github.com/HRR22-HackstreetBoys/CreateACulture"
   },
   "keywords": [
     "culture",
@@ -19,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/Jimmy6strings/CreateACulture/issues"
   },
-  "homepage": "https://github.com/Jimmy6strings/CreateACulture#readme"
+  "homepage": "https://github.com/Jimmy6strings/CreateACulture#readme",
+  "dependencies": {
+    "angular": "^1.6.3",
+    "bootstrap": "^4.0.0-alpha.4",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.9.2"
+  }
 }
