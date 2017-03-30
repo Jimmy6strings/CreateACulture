@@ -9,6 +9,7 @@ module.exports = {
   getCategories: function(req, res, next) {
     findAllCategories({})
       .then(function(category) {
+        console.log("got all the categories " + category);
         res.json(category);
       })
       .fail(function (error) {
@@ -30,10 +31,12 @@ module.exports = {
       })
       .then(function (createdCategory) {
         if(createdCategory) {
+          console.log("created new category " + createdCategory);
           res.json(createdCategory);
         }
       })
       .fail(function (err) {
         next(err);
       });
+  }
 }
