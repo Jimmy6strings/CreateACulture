@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Jimmy6strings/CreateACulture#readme",
   "dependencies": {
     "angular": "^1.6.3",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "bootstrap": "^4.0.0-alpha.4",
     "express": "^4.15.2",
