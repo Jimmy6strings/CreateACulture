@@ -16,4 +16,24 @@ module.exports = {
       });
   },
   //create a new category using findCategory
+  newCategory: function(req, res, next) {
+    var category = req.body.name;
+    findCategory({name: name})
+      .then(function (name) {
+        if (name) {
+          var newCategory = {
+            name: name,
+            beliefs: []
+          };
+          return createCategory(newCategory);
+        }
+      })
+      .then(function (createdCategory) {
+        if(createdCategory) {
+          res.json(createdCategory);
+        }
+      })
+      .fail(function (err) {
+        next(err);
+      });
 }
