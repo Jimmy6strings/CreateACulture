@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 var categorySchema = new mongoose.Schema({
   name: String,
-  beliefs: []
+  beliefs: [{ type : String }]
 });
 
 module.exports = mongoose.model('Category', categorySchema)
