@@ -8,13 +8,13 @@ var app = express();
 require('./config/routes.js')(app, express);
 require('./config/middleware.js')(app, express);
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'))
  console.log('this is directory name' + __dirname);
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-
 mongoose.connect('mongodb://localhost/createaculture');
+
 
 
 // app.get('/', function (req, res) {

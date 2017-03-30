@@ -7,6 +7,7 @@ var findAllCategories = Q.nbind(Category.find, Category);
 
 module.exports = {
   getCategories: function(req, res, next) {
+    console.log("reached getCategories");
     findAllCategories({})
       .then(function(category) {
         console.log("got all the categories " + category);
@@ -18,6 +19,7 @@ module.exports = {
   },
   //create a new category using findCategory
   newCategory: function(req, res, next) {
+    console.log("reched newCategory function ");
     var category = req.body.name;
     findCategory({name: name})
       .then(function (name) {
