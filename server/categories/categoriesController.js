@@ -22,7 +22,7 @@ module.exports = {
       });
   },
   //create a new category using findCategory
-  newCategory: function(req, res, next) {
+  newCategory: function(req, res) {
     console.log("reched newCategory function ");
     console.log(req.body);
     console.log(req.body.name);
