@@ -11,11 +11,12 @@ db.Promise = global.Promise;
 module.exports = {
   getCategories: function(req, res, next) {
     console.log("reached getCategories");
-    console.log(req);
+    // console.log(req);
     Category.find({}, function(err, categories){
       if(!err){
-        console.log(categories);
         res.send(categories);
+        console.log("GET the name! " + categories[0].name)
+        console.log("GET the belief! " + categories[0].beliefs);
       } else {
         throw err;
       }
@@ -26,10 +27,9 @@ module.exports = {
   },
   //create a new category using findCategory
   newCategory: function(req, res) {
-    console.log("reached newCategory function ");
     console.log(req.body);
-    console.log(req.body.name);
-    console.log(req.body.belief);
+    console.log("this is the category name.. " + req.body.name);
+    console.log("this is the category belief.. " + req.body.beliefs);
 
     Category.remove({}, function(err) {
       console.log('collection removed')
@@ -38,12 +38,13 @@ module.exports = {
       name: req.body.name,
     });
 
-    newCat.beliefs.push(req.body.belief);
+    newCat.beliefs.push(req.body.beliefs);
 
     newCat.save(function(err, newCat) {
       if(err) {
         res.status(500).send(err);
       } else {
+        console.log("this is the new category name " + newCat)
         res.status(200).send(newCat);
       }
     });
