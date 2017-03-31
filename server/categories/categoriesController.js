@@ -1,13 +1,18 @@
 var Category = require('./categoriesModel.js');
-var Q = require('q');
+var db = require('../index.js');
 
-var findCategory = Q.nbind(Category.findOne, Category);
-var createCategory = Q.nbind(Category.create, Category);
-var findAllCategories = Q.nbind(Category.find, Category);
+db.Promise = global.Promise;
+// var Q = require('q');
+
+// var findCategory = Q.nbind(Category.findOne, Category);
+// var createCategory = Q.nbind(Category.create, Category);
+// var findAllCategories = Q.nbind(Category.find, Category);
 
 module.exports = {
   getCategories: function(req, res, next) {
-    findAllCategories({})
+    console.log("reached getCategories");
+    console.log(req);
+    Category.find({})
       .then(function(category) {
         console.log("got all the categories " + category);
         res.json(category);
@@ -17,9 +22,12 @@ module.exports = {
       });
   },
   //create a new category using findCategory
-  newCategory: function(req, res, next) {
+  newCategory: function(req, res) {
+    console.log("reched newCategory function ");
+    console.log(req.body);
+    console.log(req.body.name);
     var category = req.body.name;
-    findCategory({name: name})
+    Category.findOne({name: category})
       .then(function (name) {
         if (name) {
           var newCategory = {
