@@ -20,6 +20,8 @@ app.use(express.static(__dirname + '/../client'))
 mongoose.connect('mongodb://localhost/createaculture');
 
 app.post('/api/categories', cat.newCategory);
+app.get('/api/categories', cat.getCategories);
+// app.post('/api/addbelief', cat.addBelief);
 
 // app.get('/', function (req, res) {
 //    res.sendFile(path.join(__dirname, '/../client/index.html'));
