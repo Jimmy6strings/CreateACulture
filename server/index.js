@@ -2,11 +2,15 @@ var path = require('path');
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var categoriesController = require('./categories/categoriesController.js');
 
 var app = express();
 
-require('./config/routes.js')(app, express);
-require('./config/middleware.js')(app, express);
+
+//require('./config/routes.js')(app, express);
+//require('./config/middleware.js')(app, express);
+
+app.post('/api/categories', categoriesController.newCategory);
 
 app.use(express.static(__dirname + '/../client'))
  console.log('this is directory name' + __dirname);

@@ -1,9 +1,9 @@
 var Category = require('./categoriesModel.js');
-var Q = require('q');
+//var Q = require('q');
 
-var findCategory = Q.nbind(Category.findOne, Category);
-var createCategory = Q.nbind(Category.create, Category);
-var findAllCategories = Q.nbind(Category.find, Category);
+// var findCategory = Q.nbind(Category.findOne, Category);
+// var createCategory = Q.nbind(Category.create, Category);
+// var findAllCategories = Q.nbind(Category.find, Category);
 
 module.exports = {
   getCategories: function(req, res, next) {
@@ -18,12 +18,18 @@ module.exports = {
   },
   //create a new category using findCategory
   newCategory: function(req, res, next) {
-    var category = req.body.name;
-    findCategory({name: name})
+    var newName = req.body.name;
+    console.log("this is the post request " + req.body);
+    Category.findOne({name: newName})
       .then(function (name) {
         if (name) {
+          res.send(name);
+        }
+      })
+      .then(function (title) {
+        if (title) {
           var newCategory = {
-            name: name,
+            name: title,
             beliefs: []
           };
           return createCategory(newCategory);
