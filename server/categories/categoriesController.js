@@ -12,11 +12,14 @@ module.exports = {
   getCategories: function(req, res, next) {
     console.log("reached getCategories");
     console.log(req);
-    Category.find({})
-      .exec(function(category) {
-        console.log("got all the categories " + category);
-        res.json(category);
-      })
+    Category.find({}, function(err, categories){
+      if(!err){
+        console.log(categories);
+        res.send(categories);
+      } else {
+        throw err;
+      }
+    })
       // .fail(function (error) {
       //   next(error);
       // });
@@ -28,7 +31,9 @@ module.exports = {
     console.log(req.body.name);
     console.log(req.body.belief);
 
-
+    Category.remove({}, function(err) { 
+      console.log('collection removed') 
+    });
     var newCat = new Category({
       name: req.body.name,
     });
@@ -43,6 +48,8 @@ module.exports = {
       }
     });
   }
+
+
 
   // addBelief: function(req, res) {
   //   console.log(req.body);
