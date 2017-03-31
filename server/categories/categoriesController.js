@@ -27,13 +27,13 @@ module.exports = {
   },
   //create a new category using findCategory
   newCategory: function(req, res) {
+    Category.remove({}, function(err) {
+      console.log('collection removed')
+    });
     console.log(req.body);
     console.log("this is the category name.. " + req.body.name);
     console.log("this is the category belief.. " + req.body.beliefs);
 
-    Category.remove({}, function(err) {
-      console.log('collection removed')
-    });
     var newCat = new Category({
       name: req.body.name,
     });
