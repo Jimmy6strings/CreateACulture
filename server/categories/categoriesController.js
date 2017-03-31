@@ -31,8 +31,8 @@ module.exports = {
     console.log(req.body.name);
     console.log(req.body.belief);
 
-    Category.remove({}, function(err) { 
-      console.log('collection removed') 
+    Category.remove({}, function(err) {
+      console.log('collection removed')
     });
     var newCat = new Category({
       name: req.body.name,
@@ -41,7 +41,7 @@ module.exports = {
     newCat.beliefs.push(req.body.belief);
 
     newCat.save(function(err, newCat) {
-      if(err) {       
+      if(err) {
         res.status(500).send(err);
       } else {
         res.status(200).send(newCat);
@@ -56,7 +56,7 @@ module.exports = {
   //   Category.update({name: req.body.name})
   //     .exec({$push: {beliefs: req.body.belief}});
   // }
-  
+
 
 
 
