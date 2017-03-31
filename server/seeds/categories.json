@@ -1,0 +1,30 @@
+[
+	{
+		"name":"Faith",
+		"beliefs":"['first Faith saying', 'second saying']"
+	},
+	{
+		"name":"Hope",
+		"beliefs":"['first Hope saying', 'second saying']"
+	},
+	{
+		"name":"Kindness",
+		"beliefs":"['first Kindness saying', 'second saying']"
+	},
+	{
+		"name":"Hard_Work",
+		"beliefs":"['first Hard Work saying', 'second saying']"
+	},
+	{
+		"name":"Perseverance",
+		"beliefs":"['first Perseverance saying', 'second saying']"
+	},
+	{
+		"name":"Prudence",
+		"beliefs":"['first Prudence saying', 'second saying']"
+	},
+	{
+		"name":"Temperance",
+		"beliefs":"['first Temperance saying', 'second saying']"
+	}
+]
