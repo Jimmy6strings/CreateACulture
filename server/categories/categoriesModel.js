@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var assert = require('assert')
+var assert = require('assert');
+var bluebird = require('bluebird');
 var db = require('../index.js');
 
 //up to 5 questions for rendering categories

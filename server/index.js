@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cat = require('./categories/categoriesController.js');
 var user = require('./users/userController.js');
-mongoose.Promise = global.Promise;
+mongoose.Promise = require('bluebird');
+
 
 var app = express();
 
@@ -18,7 +19,7 @@ app.use(express.static(__dirname + '/../client'))
 
 mongoose.connect('mongodb://localhost/createaculture');
 
-//app.post('/api/signup', user.signup);
+app.post('/api/signup', user.signup);
 app.post('/api/signin', user.signin);
 app.post('/api/categories', cat.newCategory);
 app.get('/api/categories', cat.getCategories);
