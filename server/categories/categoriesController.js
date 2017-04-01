@@ -15,8 +15,11 @@ module.exports = {
     Category.find({}, function(err, categories){
       if(!err){
         res.send(categories);
+
         console.log("GET the name! " + categories[0].name)
         console.log("GET the belief! " + categories[0].beliefs);
+        console.log("GET the name! " + categories[1].name)
+        console.log("GET the belief! " + categories[1].beliefs);
       } else {
         throw err;
       }
@@ -27,9 +30,7 @@ module.exports = {
   },
   //create a new category using findCategory
   newCategory: function(req, res) {
-    Category.remove({}, function(err) {
-      console.log('collection removed')
-    });
+
     console.log(req.body);
     console.log("this is the category name.. " + req.body.name);
     console.log("this is the category belief.. " + req.body.beliefs);
@@ -48,7 +49,20 @@ module.exports = {
         res.status(200).send(newCat);
       }
     });
+  },
+
+  removeDuplicateCategory: function(req, res) {
+    console.log("removing this category: " + req.body.name)
+    Category.remove({name: req.body.name}, function(err, name) {
+      if (err) {
+        return res.send(err);
+      } else {
+        res.json({ message: `deleted ${req.body.name}` })
+      }
+      console.log('category removed')
+    });
   }
+
 
 
 

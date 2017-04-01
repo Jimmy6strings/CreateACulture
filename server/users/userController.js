@@ -1,20 +1,35 @@
 var jwt = require('jwt-simple');
 var User = require('./userModel.js');
 var db = require('../index.js');
-require('mongoose');
+var mongoose = require('mongoose');
 db.Promise = global.Promise;
 
+var newUser = User({
+  name: 'james Mitchell',
+  username: 'jimmystring12',
+  password: 'password2',
+  admin: true
+});
 
+// save the user
+newUser.save(function(err) {
+  if (err) throw err;
+
+  console.log('User created!');
+});
 module.exports = {
-  signin: function (req, res, next) {
+  signup: function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
 
-    User.findOne(function (err, user) {
+    User.find(function (err, user) {
       if (err) {
         next(new Error("user does not exist"))
+        console.log(user);
       } else {
-        return user.comparePassword(password, function(foundUser) {
+        res.send(user);
+        console.log(user.name);
+        return User.comparePassword(password, function(foundUser) {
           if (foundUser) {
             var token = jwt.encode(user, 'secret');
             res.json({token: token});
@@ -25,7 +40,7 @@ module.exports = {
       }
     })
   },
-  signup: function (req, res, next) {
+  signin: function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
 
@@ -33,10 +48,22 @@ module.exports = {
       if (user) {
         next(new Error('user already exists'))
       } else {
-        return createUser({
-          username: username,
-          password: password
+        var newUser = User({
+        name: 'james Mitchell',
+        username: 'jimmystring11',
+        password: 'password2',
+        admin: true
+      });
+
+      // save the user
+      newUser.save(function(err) {
+        if (err) throw err;
+          console.log('User created!');
         });
+        // return createUser({
+        //   username: username,
+        //   password: password
+        // });
       }
     })
   }
