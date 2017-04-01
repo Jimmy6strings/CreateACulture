@@ -19,18 +19,6 @@ module.exports = {
       .fail(function (error) {
         next(error);
       });
-    // Category.find({}, function(err, categories){
-    //   if(!err){
-    //     res.send(categories);
-    //     console.log("GET the name! " + categories[0].name)
-    //     console.log("GET the belief! " + categories[0].beliefs);
-    //   } else {
-    //     throw err;
-    //   }
-    // })
-      // .fail(function (error) {
-      //   next(error);
-      // });
   },
   //create a new category using findCategory
   newCategory: function(req, res) {
@@ -55,7 +43,7 @@ module.exports = {
     });
   },
 
-  removeDuplicateCategory: function(req, res) {
+  removeLastCategory: function(req, res) {
     console.log("removing this category: " + req.body.name)
     Category.remove({name: req.body.name}, function(err, name) {
       if (err) {
@@ -66,18 +54,5 @@ module.exports = {
       console.log('category removed')
     });
   }
-
-
-
-
-  // addBelief: function(req, res) {
-  //   console.log(req.body);
-  //   Category.update({name: req.body.name})
-  //     .exec({$push: {beliefs: req.body.belief}});
-  // }
-
-
-
-
 
 }

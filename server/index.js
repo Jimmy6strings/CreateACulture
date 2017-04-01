@@ -23,7 +23,7 @@ app.post('/api/signup', user.signup);
 app.post('/api/signin', user.signin);
 app.post('/api/categories', cat.newCategory);
 app.get('/api/categories', cat.getCategories);
-app.patch('/api/categories', cat.removeDuplicateCategory);
+//app.patch('/api/categories', cat.removeDuplicateCategory);
 // app.post('/api/addbelief', cat.addBelief);
 
 var port = process.env.PORT || 4000;
