@@ -1,29 +1,33 @@
 var Category = require('./categoriesModel.js');
 var db = require('../index.js');
 
-db.Promise = global.Promise;
-// var Q = require('q');
+//db.Promise = global.Promise;
+var Q = require('q');
 
-// var findCategory = Q.nbind(Category.findOne, Category);
-// var createCategory = Q.nbind(Category.create, Category);
-// var findAllCategories = Q.nbind(Category.find, Category);
+var findCategory = Q.nbind(Category.findOne, Category);
+var createCategory = Q.nbind(Category.create, Category);
+var findAllCategories = Q.nbind(Category.find, Category);
 
 module.exports = {
   getCategories: function(req, res, next) {
     console.log("reached getCategories");
     // console.log(req);
-    Category.find({}, function(err, categories){
-      if(!err){
-        res.send(categories);
-
-        console.log("GET the name! " + categories[0].name)
-        console.log("GET the belief! " + categories[0].beliefs);
-        console.log("GET the name! " + categories[1].name)
-        console.log("GET the belief! " + categories[1].beliefs);
-      } else {
-        throw err;
-      }
-    })
+    findAllCategories({})
+    .then(function (category) {
+        res.json(category);
+      })
+      .fail(function (error) {
+        next(error);
+      });
+    // Category.find({}, function(err, categories){
+    //   if(!err){
+    //     res.send(categories);
+    //     console.log("GET the name! " + categories[0].name)
+    //     console.log("GET the belief! " + categories[0].beliefs);
+    //   } else {
+    //     throw err;
+    //   }
+    // })
       // .fail(function (error) {
       //   next(error);
       // });
