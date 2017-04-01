@@ -6,7 +6,6 @@ var cat = require('./categories/categoriesController.js');
 var user = require('./users/userController.js');
 mongoose.Promise = require('bluebird');
 
-
 var app = express();
 
  //require('./config/routes.js')(app, express);
