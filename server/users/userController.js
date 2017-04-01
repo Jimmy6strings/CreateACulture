@@ -1,10 +1,8 @@
-// var Q = require('q');
 var jwt = require('jwt-simple');
 var User = require('./userModel.js');
-var db = require('../index.js');
 var mongoose = require('mongoose');
-
 var Q = require('q');
+
 var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
 //var findUser = bluebird.nbind(User.findOne, User);
@@ -26,15 +24,15 @@ var createUser = Q.nbind(User.create, User);
 
 module.exports = {
   signin: function (req, res, next) {
-    var username = req.body.username;
+    var email = req.body.email;
     var password = req.body.password;
 
-    findUser({username: username})
+    findUser({email: email})
       .then(function (user) {
         if (!user) {
           next(new Error('User does not exist'));
         } else {
-          return user.comparePasswords(password)
+          return user.comparePassword(password)
             .then(function (foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
@@ -51,18 +49,18 @@ module.exports = {
   },
 
   signup: function (req, res, next) {
-    var username = req.body.username;
+    var email = req.body.email;
     var password = req.body.password;
 
     // check to see if user already exists
-    findUser({username: username})
+    findUser({email: email})
       .then(function (user) {
         if (user) {
-          next(new Error('User already exist!'));
+          next(new Error('user already exists!'));
         } else {
           // make a new user if not one
           return createUser({
-            username: username,
+            email: email,
             password: password
           });
         }

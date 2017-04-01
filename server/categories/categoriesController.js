@@ -1,6 +1,5 @@
 var Category = require('./categoriesModel.js');
 var db = require('../index.js');
-//db.Promise = global.Promise;
 var Q = require('q');
 
 var findCategory = Q.nbind(Category.findOne, Category);
@@ -20,7 +19,7 @@ module.exports = {
       .fail(function (error) {
         next(error);
       });
-
+  },
   //create a new category using findCategory
   newCategory: function(req, res) {
 
@@ -30,7 +29,7 @@ module.exports = {
 
 
     // var categories = ["Hope", "Faith", "Kindness", "Grit", "Hard_Work", "Prudence", "Temperance"];
-    // var coreBeliefs = ["Tomorrow will be better", "Pray every day", "Always be kind", "Never give up", 
+    // var coreBeliefs = ["Tomorrow will be better", "Pray every day", "Always be kind", "Never give up",
     //                     "Hard Work equals love and acceptance", "Keep a ledger", "Meditate"];
 
     // newCat.save(function(err, newCat) {
@@ -43,7 +42,7 @@ module.exports = {
     // });
   },
 
-  removeDuplicateCategory: function(req, res) {
+  removeLastCategory: function(req, res) {
     console.log("removing this category: " + req.body.name)
     Category.remove({name: req.body.name}, function(err, name) {
       if (err) {
@@ -59,8 +58,8 @@ module.exports = {
   addBelief: function(req, res) {
 
     Category.findOneAndUpdate(
-      {name: req.body.name}, 
-      {$push: {beliefs: req.body.belief}}, 
+      {name: req.body.name},
+      {$push: {beliefs: req.body.belief}},
       {safe: true, upsert: true},
       function(err, cat){
         if(err){
@@ -72,5 +71,6 @@ module.exports = {
         }
       })
     }
+  }
 
 }
