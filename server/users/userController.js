@@ -3,21 +3,21 @@ var jwt = require('jwt-simple');
 var User = require('./userModel.js');
 var db = require('../index.js');
 var mongoose = require('mongoose');
-db.Promise = global.Promise;
+var Promise = require("bluebird");
 
-var newUser = User({
-  name: 'james Mitchell',
-  username: 'jimmystring12',
-  password: 'password2',
-  admin: true
-});
+// var newUser = User({
+//   name: 'james Mitchell',
+//   username: 'jimmystring12',
+//   password: 'password2',
+//   admin: true
+// });
 
 // save the user
-newUser.save(function(err) {
-  if (err) throw err;
+// newUser.save(function(err) {
+//   if (err) throw err;
 
-  console.log('User created!');
-});
+//   console.log('User created!');
+// });
 module.exports = {
   signup: function (req, res, next) {
     var username = req.body.username;
