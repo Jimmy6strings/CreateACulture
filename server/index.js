@@ -2,7 +2,8 @@ var path = require('path');
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var cat = require('./categories/categoriesController')
+var cat = require('./categories/categoriesController.js');
+var user = require('./users/userController.js');
 mongoose.Promise = global.Promise;
 
 var app = express();
@@ -17,8 +18,11 @@ app.use(express.static(__dirname + '/../client'))
 
 mongoose.connect('mongodb://localhost/createaculture');
 
+//app.post('/api/signup', user.signup);
+app.post('/api/signin', user.signin);
 app.post('/api/categories', cat.newCategory);
 app.get('/api/categories', cat.getCategories);
+app.patch('/api/categories', cat.removeDuplicateCategory);
 // app.post('/api/addbelief', cat.addBelief);
 
 var port = process.env.PORT || 4000;
@@ -27,5 +31,3 @@ app.listen(port, function () {
 })
 
 module.exports = app;
-
-

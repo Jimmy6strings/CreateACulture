@@ -1,25 +1,58 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+// var crypto = require('crypto');
 var SALT_WORK_FACTOR = 10;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true
+var UserSchema = new Schema({
+  name: String,
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  admin: Boolean,
+  location: String,
+  meta: {
+    age: Number,
+    website: String
   },
-
-  password: {
-    type: String,
-    required: true
-  },
-  salt: String
+  created_at: Date,
+  updated_at: Date
 });
+
+
+UserSchema.pre('save', function(next) {
+  // get the current date
+  var currentDate = new Date();
+
+  // change the updated_at field to current date
+  this.updated_at = currentDate;
+
+  // if created_at doesn't exist, add to that field
+  if (!this.created_at)
+    this.created_at = currentDate;
+
+  next();
+});
+
+// var UserSchema = new mongoose.Schema({
+//   email: {
+//     type: String,
+//     unique: true,
+//     required: true
+//   },
+//   name: {
+//     type: String,
+//     required: true
+//   },
+//   hash: String,
+//   salt: String
+
+// });
 
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
-        cb(null, isMatch);
+        cb(isMatch);
     });
 };
 
@@ -45,4 +78,7 @@ UserSchema.pre('save', function(next) {
     });
 });
 
-module.exports = mongoose.model('users', UserSchema);
+var User = mongoose.model('User', UserSchema);
+
+
+module.exports = User;
