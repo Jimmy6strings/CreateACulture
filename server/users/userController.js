@@ -1,3 +1,4 @@
+// var Q = require('q');
 var jwt = require('jwt-simple');
 var User = require('./userModel.js');
 var db = require('../index.js');
@@ -126,4 +127,9 @@ module.exports = {
   //   })
   // }
 
+<<<<<<< HEAD
 };
+=======
+}
+
+>>>>>>> Add belief not working, rebasing for authentication and begin working on frontend

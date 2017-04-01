@@ -7,7 +7,7 @@ module.exports = function(app, express) {
   // app.post('api/users/signup', userController);
   // app.get('api/users/signedin', userController);
 
-  //app.get('/api/categories', categoriesController.getCategories);
-  //app.post('/api/categories', categoriesController.newCategory);
+  app.get('/api/categories', categoriesController.getCategories);
+  app.post('/api/categories', categoriesController.newCategory);
 
 };
