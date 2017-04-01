@@ -1,3 +1,4 @@
+// var Q = require('q');
 var jwt = require('jwt-simple');
 var User = require('./userModel.js');
 var db = require('../index.js');
@@ -69,3 +70,4 @@ module.exports = {
   }
 
 }
+
