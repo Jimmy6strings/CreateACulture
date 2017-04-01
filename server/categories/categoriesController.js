@@ -3,7 +3,6 @@ var db = require('../index.js');
 //db.Promise = global.Promise;
 var Q = require('q');
 
-
 var findCategory = Q.nbind(Category.findOne, Category);
 var createCategory = Q.nbind(Category.create, Category);
 var findAllCategories = Q.nbind(Category.find, Category);
@@ -55,6 +54,7 @@ module.exports = {
       console.log('category removed')
     });
   },
+
 
   addBelief: function(req, res) {
 

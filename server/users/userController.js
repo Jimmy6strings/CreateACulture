@@ -23,6 +23,7 @@ var createUser = Q.nbind(User.create, User);
 
 //   console.log('User created!');
 // });
+
 module.exports = {
   signin: function (req, res, next) {
     var username = req.body.username;
@@ -76,4 +77,6 @@ module.exports = {
       });
   }
 
+
 };
+

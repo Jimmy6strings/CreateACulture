@@ -12,36 +12,6 @@ var UserSchema = new Schema({
   salt: String
 });
 
-
-// UserSchema.pre('save', function(next) {
-//   // get the current date
-//   var currentDate = new Date();
-
-//   // change the updated_at field to current date
-//   this.updated_at = currentDate;
-
-//   // if created_at doesn't exist, add to that field
-//   if (!this.created_at)
-//     this.created_at = currentDate;
-
-//   next();
-// });
-
-// var UserSchema = new mongoose.Schema({
-//   email: {
-//     type: String,
-//     unique: true,
-//     required: true
-//   },
-//   name: {
-//     type: String,
-//     required: true
-//   },
-//   hash: String,
-//   salt: String
-
-// });
-
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     var savedPassword = this.password;
     return Q.promise(function (resolve, reject) {
@@ -78,6 +48,7 @@ UserSchema.pre('save', function (next) {
     });
   });
 });
+
 
 
 // var User = mongoose.model('User', UserSchema);
