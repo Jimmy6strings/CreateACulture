@@ -8,37 +8,61 @@ var db = require('../index.js');
 
 var categorySchema = new mongoose.Schema({
   name: String,
-  beliefs: [{type: String}]
+  beliefs: [String]
 });
 
 var data = [
   {
     "name":"Faith",
-    "beliefs":"first Faith saying"
+    "beliefs":[
+      "Pray every morning",
+      "You will argue with yourself that there is no way forward. But with God, nothing is impossible"
+    ]
   },
   {
     "name":"Hope",
-    "beliefs":"first Hope saying"
+    "beliefs":[
+      "Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence",
+      "Learn from yesterday. Live for today. Hope for tomorrow",
+      "Keep your face always toward the sunshine -- and shadows will fall behind you",
+      "Dismiss what insults your soul and your very flesh shall be a great poem",
+      "You must travel it by yourself. It is not far. It is within reach"
+    ]
   },
   {
     "name":"Kindness",
-    "beliefs":"first Kindness saying"
+    "beliefs":[
+      "Always be kind",
+      "People are flawed. Be patient with them",
+      "It's easy to see the splinter in someone else's eye and miss the log in your own",
+      "Be curious, not judgmental",
+      "I do not ask the wounded person how he feels, I myself become the wounded person"
+    ]
   },
   {
     "name":"Hard_Work",
-    "beliefs":"first Hard Work saying"
+    "beliefs":[
+      "Feeling bad? WORK your cares away",
+      "Wake up early"
+    ]
   },
   {
     "name":"Perseverance",
-    "beliefs":"first Perseverance saying"
+    "beliefs":[
+      "Never, ever quit"
+    ]
   },
   {
     "name":"Prudence",
-    "beliefs":"first Prudence saying"
+    "beliefs":[
+      "Invest one-fourth of what you earn"
+    ]
   },
   {
     "name":"Temperance",
-    "beliefs":"first Temperance saying"
+    "beliefs":[
+      "In times of temptation, reflect on what you're grateful for"
+    ]
   }
 ];
 
