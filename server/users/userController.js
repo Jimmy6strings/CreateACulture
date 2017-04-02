@@ -5,25 +5,10 @@ var Q = require('q');
 
 var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
-//var findUser = bluebird.nbind(User.findOne, User);
-//var createUser = bluebird.nbind(User.create, User);
-
-// var newUser = User({
-//   name: 'james Mitchell',
-//   username: 'jimmystring12',
-//   password: 'password2',
-//   admin: true
-// });
-
-
-// newUser.save(function(err) {
-//   if (err) throw err;
-
-//   console.log('User created!');
-// });
 
 module.exports = {
   signin: function (req, res, next) {
+    console.log("this should be a user " + req.body)
     var email = req.body.email;
     var password = req.body.password;
 
@@ -49,6 +34,7 @@ module.exports = {
   },
 
   signup: function (req, res, next) {
+    console.log("this is the email we want " + req.body);
     var email = req.body.email;
     var password = req.body.password;
 
@@ -69,12 +55,35 @@ module.exports = {
         // create token to send back for auth
         var token = jwt.encode(user, 'secret');
         res.json({token: token});
+        console.log("this is the new user token " + token)
       })
       .fail(function (error) {
         next(error);
       });
+  },
+
+  checkAuth: function (req, res, next) {
+    // checking to see if the user is authenticated
+    // grab the token in the header is any
+    // then decode the token, which we end up being the user object
+    // check to see if that user exists in the database
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      next(new Error('No token'));
+    } else {
+      var user = jwt.decode(token, 'secret');
+      findUser({email: user.email})
+        .then(function (foundUser) {
+          if (foundUser) {
+            res.send(200);
+          } else {
+            res.send(401);
+          }
+        })
+        .fail(function (error) {
+          next(error);
+        });
+    }
   }
-
-
 };
 

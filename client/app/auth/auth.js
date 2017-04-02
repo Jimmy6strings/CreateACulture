@@ -1,4 +1,4 @@
-angular.module('auth', [])
+angular.module('app.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
@@ -8,6 +8,7 @@ angular.module('auth', [])
       .then(function (token) {
         $window.localStorage.setItem('com.create', token);
         $location.path('/index');
+
       })
       .catch(function (error) {
         console.error(error);
@@ -16,9 +17,11 @@ angular.module('auth', [])
 
   $scope.signup = function () {
     Auth.signup($scope.user)
+    console.log($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.create', token);
         $location.path('/index');
+
       })
       .catch(function (error) {
         console.error(error);

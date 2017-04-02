@@ -1,11 +1,11 @@
-angular.module('app', [])
+angular.module('app.factory', [])
 
 .factory('Categories', function($http){
 
   var getCategories = function() {
     return $http({
       method: 'GET',
-      url: 'api/categories'      
+      url: 'api/categories'
     })
     .then(function(response){
       return response.data;
@@ -47,17 +47,20 @@ angular.module('app', [])
     })
     .then(function (resp) {
       return resp.data.token;
+
     });
   };
 
   var signup = function (user) {
+    console.log("this is the factory user")
+    console.log(user)
     return $http({
       method: 'POST',
       url: '/api/signup',
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+       return resp.data.token;
     });
   };
 
