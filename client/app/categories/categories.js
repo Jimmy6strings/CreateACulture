@@ -1,9 +1,9 @@
-angular.module('categories', [])
+angular.module('app.categories', [])
 
-.controller('categoriesController', function($scope, Categories))
-
-// $scope is the intermediary between what the user sees and the 
-// factory. $scope methods grab from the factory and display it 
+.controller('categoriesController', function($scope, Categories) {
+  $scope = {};
+// $scope is the intermediary between what the user sees and the
+// factory. $scope methods grab from the factory and display it
 // via html
 
   $scope.getAll = function() {
