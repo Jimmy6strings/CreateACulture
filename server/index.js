@@ -2,9 +2,6 @@ var path = require('path');
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var cat = require('./categories/categoriesController.js');
-var user = require('./users/userController.js');
-mongoose.Promise = require('bluebird');
 
 var app = express();
 
