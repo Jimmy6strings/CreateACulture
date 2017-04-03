@@ -1,13 +1,15 @@
-angular.module('app.categories', [])
+angular.module('app.categories', ['app.checklist-model'])
 
 .controller('categoriesController', function($scope, Categories) {
-  $scope = {};
+  $scope.data = {};
 // $scope is the intermediary between what the user sees and the
 // factory. $scope methods grab from the factory and display it
 // via html
+  $scope.choices = []; 
 
   $scope.getAll = function() {
     Categories.getCategories().then(function(data){
+      console.log(data);
       $scope.data.categories = data;
     }).catch(function(err) {
       console.log(err);
@@ -15,5 +17,7 @@ angular.module('app.categories', [])
   };
 
   $scope.getAll();
+
+  console.log($scope.data.choices);
 
 });

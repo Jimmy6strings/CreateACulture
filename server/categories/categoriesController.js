@@ -24,9 +24,13 @@ module.exports = {
   //create a new category using findCategory
   // newCategory: function(req, res) {
 
-  //   Category.remove({}, function(err) {
-  //     console.log('collection removed')
-  //   });
+  clearCategories: function(req, res) {
+
+    Category.remove({}, function(err) {
+      console.log('collection removed')
+    });
+  
+  },
 
   // //   // newCat.save(function(err, newCat) {
   // //   //   if(err) {
@@ -64,10 +68,11 @@ module.exports = {
   },
 
   addBelief: function(req, res) {
+    console.log("request body", req.body);
 
     findOneAndChange(
       {name: req.body.name}, 
-      {$push: {beliefs: req.body.belief}}, 
+      {$push: {beliefs: req.body.belief}},
       {safe: true, upsert: true}
     ).catch(function(err){
       console.log(err);

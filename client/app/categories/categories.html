@@ -1,9 +1,15 @@
 
   <div ng-controller="categoriesController">
    <h1>Categories</h1>
-    <div ng-repeat="category in data.categories">
-      <ul>
-        <li>{{ category }}</li>
-      </ul>
-    </div>
+    
+      <h2>Which three do you admire most?</h2>
+
+
+      <label ng-repeat="category in data.categories">
+      <input type="checkbox" checklist-model="choices" checklist-value="category.name">{{category.name}}</label>
+
+      <p>{{choices}}</p>
+
   </div>
+
+
