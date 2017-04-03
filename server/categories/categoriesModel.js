@@ -68,10 +68,10 @@ var data = [
 
 var Category = mongoose.model('Category', categorySchema)
 
-// Category.collection.insertMany(data, function(err,r) {
-//   assert.equal(null, err);
-//   assert.equal(7, r.insertedCount);
-//   //db.close();
-// })
+Category.collection.insertMany(data, function(err,r) {
+  // assert.equal(null, err);
+  // assert.equal(7, r.insertedCount);
+  //db.close();
+})
 
 module.exports = Category;

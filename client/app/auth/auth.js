@@ -4,10 +4,11 @@ angular.module('app.auth', [])
   $scope.user = {};
 
   $scope.signin = function () {
+    console.log($scope.user);
     Auth.signin($scope.user)
       .then(function (token) {
-        $window.localStorage.setItem('com.create', token);
-        $location.path('/index');
+        $window.localStorage.setItem('com.createaculture', token);
+        $location.path('/index.html');
 
       })
       .catch(function (error) {
@@ -17,10 +18,9 @@ angular.module('app.auth', [])
 
   $scope.signup = function () {
     Auth.signup($scope.user)
-    console.log($scope.user)
       .then(function (token) {
-        $window.localStorage.setItem('com.create', token);
-        $location.path('/index');
+        $window.localStorage.setItem('com.createaculture', token);
+        $location.path('/index.html');
 
       })
       .catch(function (error) {

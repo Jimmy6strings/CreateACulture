@@ -16,6 +16,7 @@ module.exports = {
     findAllCategories({})
     .then(function (category) {
         res.json(category);
+        //console.log(category);
       })
       .fail(function (error) {
         next(error);
@@ -24,19 +25,20 @@ module.exports = {
   //create a new category using findCategory
   // newCategory: function(req, res) {
 
-  //   Category.remove({}, function(err) {
-  //     console.log('collection removed')
-  //   });
+   clearCategories: function(req, res) {
+    Category.remove({}, function(err) {
+      console.log('collection removed')
+    });
 
-  // //   // newCat.save(function(err, newCat) {
-  // //   //   if(err) {
-  // //   //     res.status(500).send(err);
-  // //   //   } else {
-  // //   //     console.log("this is the new category name " + newCat)
-  // //   //     res.status(200).send(newCat);
-  // //   //   }
-  // //   // });
-  // },
+  //   // newCat.save(function(err, newCat) {
+  //   //   if(err) {
+  //   //     res.status(500).send(err);
+  //   //   } else {
+  //   //     console.log("this is the new category name " + newCat)
+  //   //     res.status(200).send(newCat);
+  //   //   }
+  //   // });
+  },
 
 
   removeLastCategory: function(req, res) {
@@ -66,13 +68,13 @@ module.exports = {
   addBelief: function(req, res) {
 
     findOneAndChange(
-      {name: req.body.name}, 
-      {$push: {beliefs: req.body.belief}}, 
+      {name: req.body.name},
+      {$push: {beliefs: req.body.belief}},
       {safe: true, upsert: true}
     ).catch(function(err){
       console.log(err);
     });
-    
+
   }
 };
 

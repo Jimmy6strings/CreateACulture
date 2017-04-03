@@ -8,11 +8,11 @@ var createUser = Q.nbind(User.create, User);
 
 module.exports = {
   signin: function (req, res, next) {
-    console.log("this should be a user " + req.body)
-    var email = req.body.email;
+    console.log("this should be a user " + req.body.username)
+    var username = req.body.username;
     var password = req.body.password;
 
-    findUser({email: email})
+    findUser({username: username})
       .then(function (user) {
         if (!user) {
           next(new Error('User does not exist'));
@@ -34,19 +34,20 @@ module.exports = {
   },
 
   signup: function (req, res, next) {
-    console.log("this is the email we want " + req.body);
-    var email = req.body.email;
+    console.log("this is the username we want " + req.body.username)
+    var username = req.body.username;
     var password = req.body.password;
 
     // check to see if user already exists
-    findUser({email: email})
+    findUser({username: username})
       .then(function (user) {
         if (user) {
           next(new Error('user already exists!'));
+          console.log('user already exists!');
         } else {
-          // make a new user if not one
+          // make a new user
           return createUser({
-            email: email,
+            username: username,
             password: password
           });
         }
