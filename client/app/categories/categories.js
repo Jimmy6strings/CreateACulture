@@ -31,7 +31,7 @@ angular.module('app.categories', ['app.checklist-model'])
   }
 
   $scope.getFonts();
-
+  console.log("Workable:", $scope.workable);
 
   $scope.getAll();
   $scope.obj = {};
@@ -46,12 +46,42 @@ angular.module('app.categories', ['app.checklist-model'])
   $scope.grabResponseAndShowQuestionTwo = function() {
     $scope.questionTwoDiv = true;
   }
+
+  $scope.sevenBeliefsObjects = [
+  
+  {
+    saying: "This is the first one"
+  },
+  {
+    saying: "This is the second one"
+  },
+  {
+    saying: "This is the third one"
+  }
+
+  ];
+
+  console.log("Obj: ", $scope.obj);
+  console.log("sevenBeliefs: ", $scope.sevenBeliefs);
   
   $scope.grabResponseAndShowBeliefs = function() {
     $scope.sevenBeliefsDiv = true;
     var index = $scope.choices.indexOf($scope.primary[0]);
     console.log(index);
     $scope.choices.unshift(($scope.choices.splice(index, 1))[0]);
+
+ 
+
+
+    for(var i = 0; i < $scope.sevenBeliefs.length; i ++) {
+      $scope.sevenBeliefsObjects.push({saying: $scope.sevenBeliefs[i]});
+    }
+
+    console.log($scope.sevenBeliefsObjects);
+
+
+
+
 
     while ($scope.sevenBeliefs.length < 4) {
       var arr = $scope.obj[$scope.choices[0]];
@@ -74,6 +104,8 @@ angular.module('app.categories', ['app.checklist-model'])
         $scope.sevenBeliefs.push(temp);
       }
     }
+
+
   };
 
   $scope.NametagConfig = {
