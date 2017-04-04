@@ -13,5 +13,4 @@ module.exports = function(app, express) {
   //get all the categories
   app.get('/api/categories', categoriesController.getCategories);
 
-
 };
