@@ -52,8 +52,8 @@ angular.module('app.factory', [])
   };
 
   var signup = function (user) {
-    console.log("this is the factory user")
-    console.log(user)
+    //console.log("this is the factory user")
+    //console.log(user)
     return $http({
       method: 'POST',
       url: '/api/signup',
@@ -65,11 +65,11 @@ angular.module('app.factory', [])
   };
 
   var isAuth = function () {
-    return !!$window.localStorage.getItem('com.create');
+    return !!$window.localStorage.getItem('com.createaculture');
   };
 
   var signout = function () {
-    $window.localStorage.removeItem('com.create');
+    $window.localStorage.removeItem('com.createaculture');
     $location.path('/signin');
   };
 

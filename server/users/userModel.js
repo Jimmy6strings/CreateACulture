@@ -5,7 +5,7 @@ var SALT_WORK_FACTOR = 10;
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-  email: {
+  username: {
     type: String,
     required: true,
     unique: true
