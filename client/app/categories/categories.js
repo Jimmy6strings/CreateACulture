@@ -93,5 +93,4 @@ angular.module('app.categories', ['app.checklist-model'])
     }
   }
 
-
 });
