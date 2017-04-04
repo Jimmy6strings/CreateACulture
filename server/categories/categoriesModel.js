@@ -97,15 +97,15 @@ var data = [
   }
 ];
 
-   // Category.collection.remove({}, function(err) {
-   //      console.log('collection removed')
-   //      });
+   Category.collection.remove({}, function(err) {
+        console.log('collection removed')
+        });
 
-   // Category.collection.insertMany(data, function(err,r) {
-   //  assert.equal(null, err);
-   //  assert.equal(7, r.insertedCount);
-   // // Category.close();
-   // });
+   Category.collection.insertMany(data, function(err,r) {
+    assert.equal(null, err);
+    assert.equal(7, r.insertedCount);
+   // Category.close();
+   });
 
 
 module.exports = Category;
