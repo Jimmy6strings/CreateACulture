@@ -23,12 +23,49 @@
      <br/>
      <br/>
 
-     <div ng-show="sevenBeliefsDiv" ng-repeat="belief in sevenBeliefs">
-        <span>{{$index+1}}.  {{belief}}</span>
+     <div ng-show="sevenBeliefsDiv">
+
+  <div class="col-sm-12">
+    Hello, {{name}}!
+  </div>
+  
+  <div class="col-sm-6" ng-repeat="line in NametagConfig.NametagLines">
+    <div class="input-group">
+      <span class="input-group-addon">Font Family</span>
+      <select class="form-control" ng-model="line.Font" ng-change="selectFont(line, $index)" ng-options="f.family as f.family for f in fontFamilies">
+        <option value="">Select Font</option>
+      </select>
+    </div>
+  </div>
+  
+  <p class="col-sm-6" id="LineStyle{{$index}}" ng-repeat="text in NametagConfig.NametagLines track by $index">{{ text.Label }}</p>
 
 
-     </div>
+<!--         <div class="input-group">
+        <span class="input-group-addon">Choose Your Font</span>
+          <select class="form-control" ng-model="belief.Font" ng-change="selectFont(belief, $index)" ng-options="f.family as f.family for f in fontFamilies">
+            <option value="">Select Font</option>
+          </select>
+        </div>
 
+          <p id="LineStyle{{$index}}" ng-repeat="belief in sevenBeliefs track by $index">{{$index+1}}.  {{belief}}</p> -->
+
+    </div>
+
+
+    
+
+<!--       <div class="col-sm-6" ng-repeat="line in NametagConfig.NametagLines">
+        <div class="input-group">
+          <span class="input-group-addon">Font Family</span>
+          <select class="form-control" ng-model="font.Font" ng-change="selectFont(line, $index)" ng-options="f.family as f.family for f in fontFamilies">
+            <option value="">Select Font</option>
+          </select>
+        </div>
+      </div>
+      
+      <p class="col-sm-6" id="LineStyle{{$index}}" ng-repeat="text in NametagConfig.NametagLines track by $index">{{ text.Label }}</p>
+    </div> -->
 
 
   </div>
