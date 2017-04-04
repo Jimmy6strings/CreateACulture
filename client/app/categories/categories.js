@@ -22,7 +22,9 @@ angular.module('app.categories', ['app.checklist-model'])
       console.log(err);
     })
   };
-  
+
+  // var item = items[Math.floor(Math.random()*items.length)];
+
   $scope.getAll();
   var obj = {};
 
