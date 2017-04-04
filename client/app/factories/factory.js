@@ -12,22 +12,22 @@ angular.module('app.factory', [])
     });
   };
 
-  var addBelief = function(category, belief) {
-    return $http({
-      method: 'POST',
-      url: '/api/belief',
-      data: {
-        name: category,
-        belief: belief
-      }
-    })
-    .then(function(response){
-      return response;
-    })
-  }
+  // var addBelief = function(category, belief) {
+  //   return $http({
+  //     method: 'POST',
+  //     url: '/api/belief',
+  //     data: {
+  //       name: category,
+  //       belief: belief
+  //     }
+  //   })
+  //   .then(function(response){
+  //     return response;
+  //   })
+  // }
   return {
     getCategories: getCategories,
-    addBelief: addBelief
+    //addBelief: addBelief
   }
 })
 
@@ -63,6 +63,20 @@ angular.module('app.factory', [])
        return resp.data.token;
     });
   };
+
+  var addPost = function(category, post) {
+    return $http({
+      method: 'POST',
+      url: '/api/belief',
+      data: {
+        name: username,
+        post: post
+      }
+    })
+    .then(function(response){
+      return response;
+    })
+  }
 
   var isAuth = function () {
     return !!$window.localStorage.getItem('com.createaculture');

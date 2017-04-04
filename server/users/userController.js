@@ -5,6 +5,7 @@ var Q = require('q');
 
 var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
+var findOneAndChange = Q.nbind(User.findOneAndUpdate, User);
 
 module.exports = {
   signin: function (req, res, next) {
@@ -62,6 +63,19 @@ module.exports = {
       .fail(function (error) {
         next(error);
       });
+  },
+
+  addPost: function(req, res) {
+    console.log("request body username ", req.body.username);
+    console.log("request body post ", req.body.post);
+    findOneAndChange(
+      {username: req.body.username},
+      {$push: {post: req.body.post}},
+      {safe: true, upsert: true}
+    ).catch(function(err){
+      console.log(err);
+    });
+
   },
 
   checkAuth: function (req, res, next) {

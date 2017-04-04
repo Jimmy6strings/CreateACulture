@@ -14,7 +14,7 @@ module.exports = function(app, express) {
   //
   app.get('/api/categories', categoriesController.getCategories);
   //app.post('/api/categories', categoriesController.clearCategories);
-  app.post('/api/belief', categoriesController.addBelief);
+  app.post('/api/users/post', userController.addPost);
 
   // app.post('/api/categories', categoriesController.newCategory);
 
