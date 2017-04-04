@@ -14,7 +14,6 @@ module.exports = {
     findAllCategories({})
     .then(function (category) {
         res.json(category);
-        console.log(category);
       })
       .fail(function (error) {
         next(error);
@@ -64,6 +63,7 @@ module.exports = {
 
   // addBelief: function(req, res) {
   //   console.log("request body", req.body);
+
 
 
   //  clearCategories: function(req, res) {
@@ -118,6 +118,14 @@ module.exports = {
   //     console.log(err);
   //   });
 
-  // }
+  //   findOneAndChange(
+  //     {name: req.body.name},
+  //     {$push: {beliefs: req.body.belief}},
+  //     {safe: true, upsert: true}
+  //   ).catch(function(err){
+  //     console.log(err);
+  //   });
+
+
 };
 
