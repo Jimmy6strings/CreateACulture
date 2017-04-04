@@ -23,10 +23,9 @@
      <br/>
      <br/>
 
-     <div ng-show="sevenBeliefs">
-        <ol>
-          <li>
-        </ol> 
+     <div ng-show="sevenBeliefsDiv" ng-repeat="belief in sevenBeliefs">
+        <span>{{$index+1}}.  {{belief}}</span>
+
 
      </div>
 
