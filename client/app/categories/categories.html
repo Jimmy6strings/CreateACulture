@@ -38,7 +38,7 @@
     </div>
   </div>
   
-  <p class="col-sm-6" id="LineStyle{{$index}}" ng-repeat="text in sevenBeliefsObjects track by $index">{{ text.saying }}</p>
+  <p class="col-sm-6" id="LineStyle{{$index}}" ng-repeat="text in sevenBeliefsObjects track by $index">{{$index+1}}.  {{ text.saying }}</p>
 
 
 <!--         <div class="input-group">
