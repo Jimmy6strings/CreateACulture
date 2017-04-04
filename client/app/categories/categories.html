@@ -1,7 +1,7 @@
 
   <div ng-controller="categoriesController">
    <h1>Categories</h1>
-    
+
       <h2>Which three do you admire most?</h2>
 
       <label ng-repeat="category in data">
@@ -28,7 +28,7 @@
   <div class="col-sm-12">
     <!-- Hello, {{sevenBeliefs}}! -->
   </div>
-  
+
   <div class="col-sm-6" ng-repeat="line in sevenBeliefsObjects">
     <div class="input-group">
       <span class="input-group-addon">Font Family</span>
@@ -37,7 +37,7 @@
       </select>
     </div>
   </div>
-  
+
   <p class="col-sm-6" id="LineStyle{{$index}}" ng-repeat="text in sevenBeliefsObjects track by $index">{{ text.saying }}</p>
 
 
@@ -53,7 +53,7 @@
     </div>
 
 
-    
+
 
 <!--       <div class="col-sm-6" ng-repeat="line in NametagConfig.NametagLines">
         <div class="input-group">
@@ -63,7 +63,7 @@
           </select>
         </div>
       </div>
-      
+
       <p class="col-sm-6" id="LineStyle{{$index}}" ng-repeat="text in NametagConfig.NametagLines track by $index">{{ text.Label }}</p>
     </div> -->
 
