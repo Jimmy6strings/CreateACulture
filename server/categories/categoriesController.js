@@ -27,7 +27,7 @@ module.exports = {
   clearCategories: function(req, res) {
 
     Category.remove({}, function(err) {
-      console.log('collection removed')
+      console.log('Categories removed')
     });
   
   },
