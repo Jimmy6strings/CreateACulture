@@ -104,7 +104,7 @@ var data = [
    Category.collection.insertMany(data, function(err,r) {
     assert.equal(null, err);
     assert.equal(7, r.insertedCount);
-   // Category.close();
+    console.log("data collection added")
    });
 
 

@@ -4,12 +4,11 @@ angular.module('app.auth', [])
   $scope.user = {};
 
   $scope.signin = function () {
-    console.log($scope.user);
     Auth.signin($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.createaculture', token);
         $location.path('/index.html');
-
+        console.log("user signed in")
       })
       .catch(function (error) {
         console.error(error);

@@ -5,7 +5,7 @@ angular.module('app.categories', ['app.checklist-model'])
 // $scope is the intermediary between what the user sees and the
 // factory. $scope methods grab from the factory and display it
 // via html
-  $scope.choices = []; 
+  $scope.choices = [];
 
   $scope.workable = [];
 
@@ -13,7 +13,7 @@ angular.module('app.categories', ['app.checklist-model'])
     Categories.getCategories().then(function(data){
       $scope.data = data;
       for(var i = 0; i < data.length; i ++){
-        $scope.workable.push(data[i].name); 
+        $scope.workable.push(data[i].name);
       }
       for(var i = 0; i < $scope.workable.length; i ++) {
         $scope.obj[$scope.workable[i]] = data[i].beliefs;
@@ -46,7 +46,7 @@ angular.module('app.categories', ['app.checklist-model'])
   $scope.grabResponseAndShowQuestionTwo = function() {
     $scope.questionTwoDiv = true;
   }
-  
+
   // Input
 
   // $scope.choices = ['Hope', 'Faith', 'Kindness'];
@@ -91,8 +91,5 @@ angular.module('app.categories', ['app.checklist-model'])
       }
     }
   }
-
-  // var item = items[Math.floor(Math.random()*items.length)];
-
 
 });
