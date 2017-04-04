@@ -26,6 +26,11 @@ module.exports = {
   //     console.log('collection removed')
   //   });
 
+  //  clearCategories: function(req, res) {
+  //   Category.remove({}, function(err) {
+  //     console.log('collection removed')
+  //   });
+
   // //   // newCat.save(function(err, newCat) {
   // //   //   if(err) {
   // //   //     res.status(500).send(err);
@@ -126,6 +131,41 @@ module.exports = {
   //     console.log(err);
   //   });
 
+  // // removeLastCategory: function(req, res) {
+  // //   console.log("removing this category: " + req.body.name)
+  // //   Category.remove({name: req.body.name}, function(err, name) {
+  // //     if (err) {
+  // //       return res.send(err);
+  // //     } else {
+  // //       res.json({ message: `deleted ${req.body.name}` })
+  // //     }
+  // //     console.log('category removed')
+  // //   });
 
+  // // removeDuplicateCategory: function(req, res) {
+  // //   console.log("removing this category: " + req.body.name)
+  // //   Category.remove({name: req.body.name}, function(err, name) {
+  // //     if (err) {
+  // //       return res.send(err);
+  // //     } else {
+  // //       res.json({ message: `deleted ${req.body.name}` })
+  // //     }
+  // //     console.log('category removed')
+  // //   });
+
+  // },
+
+  // addBelief: function(req, res) {
+  //   console.log("request body", req.body);
+
+  //   findOneAndChange(
+  //     {name: req.body.name},
+  //     {$push: {beliefs: req.body.belief}},
+  //     {safe: true, upsert: true}
+  //   ).catch(function(err){
+  //     console.log(err);
+  //   });
+
+  // }
 };
 
