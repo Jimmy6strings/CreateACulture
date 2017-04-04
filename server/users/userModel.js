@@ -18,11 +18,6 @@ var UserSchema = new Schema({
   salt: String
 });
 
-var User = mongoose.model('User', UserSchema);
-
-User.collection.remove({}, function(err) {
-        console.log('user removed')
-        });
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     var savedPassword = this.password;
     return Q.promise(function (resolve, reject) {
@@ -60,4 +55,4 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-module.exports = User;
+module.exports = mongoose.model('User', UserSchema);;

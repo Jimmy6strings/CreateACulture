@@ -39,7 +39,6 @@ module.exports = {
     console.log("this is the username we want " + req.body.username)
     var username = req.body.username;
     var password = req.body.password;
-
     // check to see if user already exists
     findUser({username: username})
       .then(function (user) {
