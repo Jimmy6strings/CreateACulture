@@ -40,7 +40,6 @@ angular.module('app.factory', [])
   // after you signin/signup open devtools, click resources,
   // then localStorage and you'll see your token from the server
   var signin = function (user) {
-    console.log("this should be the factory signed in user " + user)
     return $http({
       method: 'POST',
       url: '/api/signin',

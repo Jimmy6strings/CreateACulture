@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var assert = require('assert');
+//var data = require('../seeds/categories.json')
 var bluebird = require('bluebird');
 var db = require('../index.js');
 
@@ -10,6 +11,8 @@ var categorySchema = new mongoose.Schema({
   name: String,
   beliefs: [String]
 });
+
+var Category = mongoose.model('Category', categorySchema);
 
 var data = [
   {
@@ -66,12 +69,15 @@ var data = [
   }
 ];
 
-var Category = mongoose.model('Category', categorySchema)
+   Category.collection.remove({}, function(err) {
+        console.log('collection removed')
+        });
 
-Category.collection.insertMany(data, function(err,r) {
-  // assert.equal(null, err);
-  // assert.equal(7, r.insertedCount);
-  //db.close();
-})
+   Category.collection.insertMany(data, function(err,r) {
+    assert.equal(null, err);
+    assert.equal(7, r.insertedCount);
+   // Category.close();
+   });
+
 
 module.exports = Category;
