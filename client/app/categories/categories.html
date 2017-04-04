@@ -1,9 +1,42 @@
 
   <div ng-controller="categoriesController">
    <h1>Categories</h1>
-    <div ng-repeat="category in data.categories">
-      <ul>
-        <li>{{ category }}</li>
-      </ul>
-    </div>
+    
+      <h2>Which three do you admire most?</h2>
+
+      <label ng-repeat="category in data">
+      <input type="checkbox" checklist-model="choices" checklist-value="category.name" checklist-change="checkChanged(category)" ng-disabled="checked===limit">{{category.name}}</label>
+
+      <p>{{choices}}</p>
+
+     <button type="submit" ng-click="grabResponseAndShowQuestionTwo()" class="btn btn-danger btn-lg">Submit</button>
+
+     <div ng-show="questionTwoDiv">
+       <label ng-repeat="category in choices">
+       <input type="checkbox" checklist-model="primary" checklist-value="category">{{category}}</label>
+
+       <p>{{primary}}</p>
+
+       <button type="submit" ng-click="grabResponseAndShowBeliefs()" class="btn btn-danger btn-lg">Submit</button>
+     </div>
+
+     <br/>
+     <br/>
+
+     <div ng-show="sevenBeliefs">
+        <ol>
+          <li>
+        </ol> 
+
+     </div>
+
+
+
   </div>
+
+
+
+
+
+
+

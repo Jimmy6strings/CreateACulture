@@ -3,6 +3,7 @@ angular.module('app', [
   'app.auth',
   'app.categories',
   'ngRoute'
+
   ])
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
