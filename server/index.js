@@ -9,8 +9,6 @@ app.use(bodyParser.json());
 
 mongoose.connect('mongodb://localhost/createaculture');
 
-app.use(bodyParser.json());
-
 require('./config/routes.js')(app, express);
 require('./config/middleware.js')(app, express);
 
