@@ -92,4 +92,7 @@ angular.module('app.categories', ['app.checklist-model'])
     }
   }
 
+  // var item = items[Math.floor(Math.random()*items.length)];
+
+
 });
