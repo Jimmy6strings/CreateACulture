@@ -17,19 +17,7 @@ module.exports = {
       .fail(function (error) {
         next(error);
       });
-  },
-
-  addBelief: function(req, res) {
-    console.log("request body", req.body);
-
-    findOneAndChange(
-      {name: req.body.name},
-      {$push: {beliefs: req.body.belief}},
-      {safe: true, upsert: true}
-    ).catch(function(err){
-      console.log(err);
-    });
-
   }
+
 };
 

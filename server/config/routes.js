@@ -10,14 +10,9 @@ module.exports = function(app, express) {
   app.post('/api/signup', userController.signup);
   //check user authentication
   app.get('/api/users/signedin', userController.checkAuth);
-
-  //
+  //get all the categories
   app.get('/api/categories', categoriesController.getCategories);
-  // app.post('/api/categories', categoriesController.clearCategories);
-  app.post('/api/belief', categoriesController.addBelief);
-
-  // app.post('/api/categories', categoriesController.newCategory);
-
-  // app.patch('/api/categories', categoriesController.removeDuplicateCategory);
+  //create new belief from category and persist in user model
+  app.post('/api/users/post', userController.addPost);
 
 };
