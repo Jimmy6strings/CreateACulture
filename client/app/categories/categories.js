@@ -67,7 +67,7 @@ angular.module('app.categories', ['app.checklist-model'])
     console.log(index);
     $scope.choices.unshift(($scope.choices.splice(index, 1))[0]);
 
-    // console.log($scope.choices);
+
 
     while ($scope.sevenBeliefs.length < 4) {
       var arr = $scope.obj[$scope.choices[0]];
@@ -87,12 +87,10 @@ angular.module('app.categories', ['app.checklist-model'])
       var arr = $scope.obj[$scope.choices[2]];
       var temp = arr[Math.floor(Math.random()*arr.length)];
       if(!$scope.sevenBeliefs.includes(temp)) {
+        console.log($scope.sevenBeliefs)
         $scope.sevenBeliefs.push(temp);
       }
     }
   }
-
-  // var item = items[Math.floor(Math.random()*items.length)];
-
 
 });

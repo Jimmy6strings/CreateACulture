@@ -12,6 +12,7 @@
      <button type="submit" ng-click="grabResponseAndShowQuestionTwo()" class="btn btn-danger btn-lg">Submit</button>
 
      <div ng-show="questionTwoDiv">
+     <h2>Of the three listed, which is most important?</h2>
        <label ng-repeat="category in choices">
        <input type="checkbox" checklist-model="primary" checklist-value="category">{{category}}</label>
 
@@ -24,11 +25,24 @@
      <br/>
 
      <div ng-show="sevenBeliefsDiv" ng-repeat="belief in sevenBeliefs">
+     <h3>This is your belief!</h3>
         <span>{{$index+1}}.  {{belief}}</span>
 
 
      </div>
+     <br>
+     <br>
+     <div class="creator">
+     <h2>Enter your new belief here!</h2>
+  <form name='beliefForm' ng-submit="addBelief()" novalidate>
+    <input name='beliefs' type="text" placeholder="Enter your belief here"
+      ng-model="beliefs"
+      />
 
+    <button type="submit" value="Belief" ng-disabled='beliefForm.$invalid'>
+    add
+    </button>
+  </form>
 
 
   </div>
