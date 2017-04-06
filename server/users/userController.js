@@ -5,6 +5,34 @@ var Q = require('q');
 
 var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
+var findOneAndChange = Q.nbind(User.update, User);
+
+// Below data is added to each new User.userBeliefs
+var data = [
+  {
+    "category":"Faith"
+  },
+  {
+    "category":"Hope"
+  },
+  {
+    "category":"Kindness"
+  },
+  {
+    "category":"Hard_Work"
+  },
+  {
+    "category":"Perseverance"
+  },
+  {
+    "category":"Prudence"
+  },
+  {
+    "category":"Temperance"
+  }
+];
+
+var datajson = JSON.stringify(data);
 
 module.exports = {
   signin: function (req, res, next) {
@@ -49,7 +77,8 @@ module.exports = {
           // make a new user
           return createUser({
             username: username,
-            password: password
+            password: password,
+            userCategories: data
           });
         }
       })
@@ -86,6 +115,25 @@ module.exports = {
           next(error);
         });
     }
+  }, 
+
+  addUserBelief: function(req, res) {
+    console.log("reached addUserBelief");
+    console.log("request body", req.body);
+
+// below works as long as we have the subdocument's
+// id. 
+
+    var contentId = mongoose.Types.ObjectId(req.body.id);
+    findOneAndChange(
+      {'userCategories._id': contentId},
+      {$push: {'userCategories.$.userBeliefs': req.body.belief}}
+      // {safe: true, upsert: true}
+    ).catch(function(err){
+      console.log(err);
+    });
+
   }
+
 };
 

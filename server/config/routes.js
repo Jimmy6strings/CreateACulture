@@ -10,6 +10,7 @@ module.exports = function(app, express) {
   app.post('/api/signup', userController.signup);
   //check user authentication
   app.get('/api/users/signedin', userController.checkAuth);
+  app.post('/api/userbeliefs', userController.addUserBelief);
 
   //
   app.get('/api/categories', categoriesController.getCategories);

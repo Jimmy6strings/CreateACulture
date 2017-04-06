@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var assert = require('assert');
 //var data = require('../seeds/categories.json')
 var bluebird = require('bluebird');
-var db = require('../index.js');
+// var db = require('../index.js');
 
 //up to 5 questions for rendering categories
 //have descriptions for each category and question
@@ -104,7 +104,6 @@ var data = [
    // Category.collection.insertMany(data, function(err,r) {
    //  assert.equal(null, err);
    //  assert.equal(7, r.insertedCount);
-   // // Category.close();
    // });
 
 
