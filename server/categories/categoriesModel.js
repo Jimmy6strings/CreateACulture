@@ -1,17 +1,14 @@
 var mongoose = require('mongoose');
 var assert = require('assert');
 var bluebird = require('bluebird');
-var db = require('../index.js');
+// var db = require('../index.js');
 
 //up to 5 questions for rendering categories
 //have descriptions for each category and question
 
 var categorySchema = new mongoose.Schema({
   name: String,
-  beliefs: {
-    type: [String],
-    index: { sparse: true }
-  }
+  beliefs: [String]
 });
 
 var Category = mongoose.model('Category', categorySchema);
@@ -108,7 +105,6 @@ var data = [
    // Category.collection.insertMany(data, function(err,r) {
    //  assert.equal(null, err);
    //  assert.equal(7, r.insertedCount);
-   //  console.log("data collection added", data)
    // });
 
 module.exports = Category;
