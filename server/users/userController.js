@@ -5,7 +5,6 @@ var Q = require('q');
 
 var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
-var findOneAndChange = Q.nbind(User.findOneAndUpdate, User);
 
 module.exports = {
   signin: function (req, res, next) {

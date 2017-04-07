@@ -18,7 +18,11 @@ angular.module('app', [
     })
     .when('/index.html', {
       templateUrl: './app/categories/categories.html',
-      controller: 'categoriesController'
+      controller: 'categoriesController',
+    })
+    .when('/index.html', {
+      templateUrl: './app/categories/categories.html',
+      controller: 'beliefsController'
     })
     .when('/index.html', {
       templateUrl: './app/categories/categories.html',

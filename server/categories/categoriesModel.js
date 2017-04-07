@@ -72,10 +72,12 @@ var data = [
       "Courage and perseverance have a magical talisman, before which difficulties disappear and obstacles crumble",
       "There's a difference between failing and losing. Quitting is losing. Failing brings you one step closer to your goal",
       "There are no dumb questions. Only dumb people that don't ask",
-      //"In the middle of difficulty lies opportunity",
       "Failure brings you one step closer to your goal",
       "Work. Fail. Repeat.",
-      //"Pain is weakness leaving the body"
+      "In the middle of difficulty lies opportunity ",
+      "Failure brings you one step closer to your goal",
+      "Work. Fail. Repeat.",
+      "Pain is weakness leaving the body"
     ]
   },
   {
@@ -99,17 +101,14 @@ var data = [
   }
 ];
 
-   Category.collection.remove({}, function(err) {
-        console.log('collection removed')
-        });
+   // Category.collection.remove({}, function(err) {
+   //      console.log('collection removed')
+   //      });
 
-   //Category.collection.ensureIndex({"beliefs": 1}, {unique: true});
-
-   Category.collection.insertMany(data, function(err,r) {
-    assert.equal(null, err);
-    assert.equal(7, r.insertedCount);
-    console.log("data collection added", data)
-   });
-
+   // Category.collection.insertMany(data, function(err,r) {
+   //  assert.equal(null, err);
+   //  assert.equal(7, r.insertedCount);
+   //  console.log("data collection added", data)
+   // });
 
 module.exports = Category;
