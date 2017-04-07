@@ -1,38 +1,16 @@
 var jwt = require('jwt-simple');
 var User = require('./userModel.js');
+var UserCategory = require('./userCategoriesModel.js');
 var mongoose = require('mongoose');
 var Q = require('q');
 
 var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
-var findOneAndChange = Q.nbind(User.update, User);
+var createUserCategory = Q.nbind(UserCategory.create, UserCategory);
+var findOneAndChange = Q.nbind(UserCategory.findOneAndUpdate, UserCategory);
 
-// Below data is added to each new User.userBeliefs
-var data = [
-  {
-    "category":"Faith"
-  },
-  {
-    "category":"Hope"
-  },
-  {
-    "category":"Kindness"
-  },
-  {
-    "category":"Hard_Work"
-  },
-  {
-    "category":"Perseverance"
-  },
-  {
-    "category":"Prudence"
-  },
-  {
-    "category":"Temperance"
-  }
-];
-
-var datajson = JSON.stringify(data);
+var categories = ['Faith', 'Hope', 'Kindness', 'Fortitude', 'Diligence', 
+                  'Prudence', 'Temperance'];
 
 module.exports = {
   signin: function (req, res, next) {
@@ -77,8 +55,7 @@ module.exports = {
           // make a new user
           return createUser({
             username: username,
-            password: password,
-            userCategories: data
+            password: password
           });
         }
       })
@@ -87,6 +64,19 @@ module.exports = {
         var token = jwt.encode(user, 'secret');
         res.json({token: token});
         console.log("this is the new user token " + token)
+      })
+      .then(function (user) {
+        if (user) {
+          next(new Error('user already exists!'));
+          console.log('user already exists!');
+        } else {
+          categories.forEach(function(cat){
+            return createUserCategory({
+              username: username,
+              category: cat
+            });      
+          });
+        }
       })
       .fail(function (error) {
         next(error);
@@ -118,21 +108,24 @@ module.exports = {
   }, 
 
   addUserBelief: function(req, res) {
-    console.log("reached addUserBelief");
-    console.log("request body", req.body);
-
-// below works as long as we have the subdocument's
-// id. 
-
-    var contentId = mongoose.Types.ObjectId(req.body.id);
     findOneAndChange(
-      {'userCategories._id': contentId},
-      {$push: {'userCategories.$.userBeliefs': req.body.belief}}
-      // {safe: true, upsert: true}
+      {username: req.body.username, category: req.body.category}, 
+      {$push: {beliefs: req.body.belief}},
+      {safe: true, upsert: true}
     ).catch(function(err){
       console.log(err);
     });
+  },
 
+  addUserCategory: function(req, res) {
+    console.log("reached addUserCategory function");
+    console.log('req.body: ', req.body);
+    createUserCategory({
+      username: req.body.username,
+      category: req.body.category
+    }).catch(function(err){
+      console.log(err);
+    });
   }
 
 };

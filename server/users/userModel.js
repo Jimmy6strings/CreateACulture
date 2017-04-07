@@ -1,14 +1,8 @@
 var mongoose = require('mongoose');
 var Q = require('q');
 var bcrypt = require('bcrypt-nodejs');
-// var categories = require('./categories/categoriesModel');
 var SALT_WORK_FACTOR = 10;
 var Schema = mongoose.Schema;
-
-var userCategorySchema = new Schema({
-  category: String,
-  userBeliefs: [String]
-});
 
 var UserSchema = new Schema({
   username: {
@@ -20,11 +14,8 @@ var UserSchema = new Schema({
     type: String,
     required: true
   },
-  salt: String,
-  userCategories: [userCategorySchema]
+  salt: String
 });
-
-
 
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     var savedPassword = this.password;

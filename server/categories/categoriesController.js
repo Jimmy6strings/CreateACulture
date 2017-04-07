@@ -20,8 +20,6 @@ module.exports = {
   },
 
   addBelief: function(req, res) {
-    console.log("request body", req.body);
-
     findOneAndChange(
       {name: req.body.name},
       {$push: {beliefs: req.body.belief}},
