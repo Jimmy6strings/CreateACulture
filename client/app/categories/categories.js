@@ -23,15 +23,14 @@ angular.module('app.categories', ['app.checklist-model'])
     })
   };
 
-  // $scope.check = $scope.choices.length;
+  $scope.getFonts = function() {
+    Categories.getFontFams().then(function(result){
+      $scope.fontFamilies = result;
+    })
+    console.log($scope.fontFamilies);
+  }
 
-  // $scope.checkChanged = function(item){
-  //   if(item) $scope.checked++;
-  //   else $scope.checked--;
-  // }
-
-  // $scope.limit = 3;
-  // var item = items[Math.floor(Math.random()*items.length)];
+  $scope.getFonts();
 
   $scope.getAll();
   $scope.obj = {};
@@ -57,9 +56,6 @@ angular.module('app.categories', ['app.checklist-model'])
   //   'Perseverance': ['list of beliefs']
   // }
 
-  // Output
-
-  // ['four Hope beliefs', 'two Faith beliefs', 'One Kindness belief'];
 
   $scope.grabResponseAndShowBeliefs = function() {
     $scope.sevenBeliefsDiv = true;
@@ -67,7 +63,11 @@ angular.module('app.categories', ['app.checklist-model'])
     console.log(index);
     $scope.choices.unshift(($scope.choices.splice(index, 1))[0]);
 
+    for(var i = 0; i < $scope.sevenBeliefs.length; i ++) {
+      $scope.sevenBeliefsObjects.push({saying: $scope.sevenBeliefs[i]});
+    }
 
+    console.log($scope.sevenBeliefsObjects);
 
     while ($scope.sevenBeliefs.length < 4) {
       var arr = $scope.obj[$scope.choices[0]];
@@ -91,6 +91,6 @@ angular.module('app.categories', ['app.checklist-model'])
         $scope.sevenBeliefs.push(temp);
       }
     }
-  }
+  };
 
 });
