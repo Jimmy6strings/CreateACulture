@@ -104,7 +104,7 @@ module.exports = {
 
   addUserBelief: function(req, res) {
     findOneAndChange(
-      {username: req.body.username, category: req.body.category}, 
+      {username: req.body.username, name: req.body.category}, 
       {$push: {beliefs: req.body.belief}},
       {safe: true, upsert: true}
     ).catch(function(err){
@@ -117,7 +117,7 @@ module.exports = {
     console.log('req.body: ', req.body);
     createUserCategory({
       username: req.body.username,
-      category: req.body.category
+      name: req.body.category
     }).catch(function(err){
       console.log(err);
     });

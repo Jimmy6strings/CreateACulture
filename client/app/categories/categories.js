@@ -12,6 +12,7 @@ angular.module('app.categories', ['app.checklist-model'])
   $scope.getAll = function() {
     Categories.getCategories().then(function(data){
       $scope.data = data;
+      (console.log("Scope.data: ", $scope.data));
       for(var i = 0; i < data.length; i ++){
         $scope.workable.push(data[i].name);
       }
@@ -22,15 +23,6 @@ angular.module('app.categories', ['app.checklist-model'])
       console.log(err);
     })
   };
-
-  $scope.getFonts = function() {
-    Categories.getFontFams().then(function(result){
-      $scope.fontFamilies = result;
-    })
-    console.log($scope.fontFamilies);
-  }
-
-  $scope.getFonts();
 
   $scope.getAll();
   $scope.obj = {};
@@ -58,16 +50,17 @@ angular.module('app.categories', ['app.checklist-model'])
 
 
   $scope.grabResponseAndShowBeliefs = function() {
+    console.log("reached grabResponseAndShowBeliefs", "Scope.obj: ", $scope.obj);
     $scope.sevenBeliefsDiv = true;
     var index = $scope.choices.indexOf($scope.primary[0]);
     console.log(index);
     $scope.choices.unshift(($scope.choices.splice(index, 1))[0]);
 
-    for(var i = 0; i < $scope.sevenBeliefs.length; i ++) {
-      $scope.sevenBeliefsObjects.push({saying: $scope.sevenBeliefs[i]});
-    }
+    // for(var i = 0; i < $scope.sevenBeliefs.length; i ++) {
+    //   $scope.sevenBeliefsObjects.push({saying: $scope.sevenBeliefs[i]});
+    // }
 
-    console.log($scope.sevenBeliefsObjects);
+    // console.log("Scope.sevenBeliefsObjects:", $scope.sevenBeliefsObjects);
 
     while ($scope.sevenBeliefs.length < 4) {
       var arr = $scope.obj[$scope.choices[0]];

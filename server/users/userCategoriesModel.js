@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var UserCategorySchema = new Schema({
   username: String,
-  category: String,
+  name: String,
   beliefs: [String]
 });
 

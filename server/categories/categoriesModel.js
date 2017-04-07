@@ -15,7 +15,7 @@ var Category = mongoose.model('Category', categorySchema);
 
 var data = [
   {
-    "category":"Faith",
+    "name":"Faith",
     "beliefs":[
       "Pray every morning",
       "You will argue with yourself that there is no way forward. But with God, nothing is impossible",
@@ -24,7 +24,7 @@ var data = [
     ]
   },
   {
-    "category":"Hope",
+    "name":"Hope",
     "beliefs":[
       "Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence",
       "Learn from yesterday. Live for today. Hope for tomorrow",
@@ -35,7 +35,7 @@ var data = [
     ]
   },
   {
-    "category":"Kindness",
+    "name":"Kindness",
     "beliefs":[
       "Always be kind",
       "People are flawed. So are you. Forgive them",
@@ -46,7 +46,7 @@ var data = [
     ]
   },
   {
-    "category":"Hard_Work",
+    "name":"Hard_Work",
     "beliefs":[
       "Feeling bad? WORK yourself better",
       "Wake up two hours early to read, work or learn something new",
@@ -62,7 +62,7 @@ var data = [
     ]
   },
   {
-    "category":"Perseverance",
+    "name":"Perseverance",
     "beliefs":[
       "Never, ever quit",
       "Quitting is for lesser souls",
@@ -78,7 +78,7 @@ var data = [
     ]
   },
   {
-    "category":"Prudence",
+    "name":"Prudence",
     "beliefs":[
       "Invest one-fourth of what you earn",
       "Keep a ledger",
@@ -87,7 +87,7 @@ var data = [
     ]
   },
   {
-    "category":"Temperance",
+    "name":"Temperance",
     "beliefs":[
       "In times of temptation, reflect on what you're grateful for",
       "Meditation is exercise for your mind. Do it every day",

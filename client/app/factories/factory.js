@@ -27,33 +27,8 @@ angular.module('app.factory', [])
     })
   };
 
-  // Gets fonts from google fonts
-  var getFontFams = function(){
-      return $http({ 
-        method: 'GET', 
-        url: 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyDBzzPRqWl2eU_pBMDr_8mo1TbJgDkgst4&sort=alpha' 
-      })
-      .then(function (result) {
-      // console.log(result.data.items)
-      var fonts = [];
-      angular.forEach(result.data.items, function (item) {
-        var newFont = {};
-        newFont.family = item.family;
-        newFont.value = newFont.family.replace(/ /g, '+');
-        if (item.variants.length > 0) {
-          angular.forEach(item.variants, function (v) {
-            newFont.value += ':' + v;
-          });
-        }
-        fonts.push(newFont);
-      });
-      return fonts;
-    });
-  };
-  
   return {
     getCategories: getCategories
-
   }
 })
 
