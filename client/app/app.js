@@ -2,7 +2,6 @@ angular.module('app', [
   'app.factory',
   'app.auth',
   'app.categories',
-  // 'app.beliefs',
   'ngRoute'
 
   ])
