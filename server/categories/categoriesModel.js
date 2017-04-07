@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var assert = require('assert');
-//var data = require('../seeds/categories.json')
 var bluebird = require('bluebird');
 var db = require('../index.js');
 
@@ -9,7 +8,10 @@ var db = require('../index.js');
 
 var categorySchema = new mongoose.Schema({
   name: String,
-  beliefs: [String]
+  beliefs: {
+    type: [String],
+    index: { sparse: true }
+  }
 });
 
 var Category = mongoose.model('Category', categorySchema);
@@ -70,10 +72,12 @@ var data = [
       "Courage and perseverance have a magical talisman, before which difficulties disappear and obstacles crumble",
       "There's a difference between failing and losing. Quitting is losing. Failing brings you one step closer to your goal",
       "There are no dumb questions. Only dumb people that don't ask",
-      "Pain is weakness leaving the body",
       "Failure brings you one step closer to your goal",
       "Work. Fail. Repeat.",
-      "In the middle of difficulty lies opportunity"
+      "In the middle of difficulty lies opportunity ",
+      "Failure brings you one step closer to your goal",
+      "Work. Fail. Repeat.",
+      "Pain is weakness leaving the body"
     ]
   },
   {
@@ -104,8 +108,7 @@ var data = [
    // Category.collection.insertMany(data, function(err,r) {
    //  assert.equal(null, err);
    //  assert.equal(7, r.insertedCount);
-   // // Category.close();
+   //  console.log("data collection added", data)
    // });
-
 
 module.exports = Category;
