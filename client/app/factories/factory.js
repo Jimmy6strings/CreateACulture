@@ -12,23 +12,11 @@ angular.module('app.factory', [])
     });
   };
 
-  var addPost = function(post) {
-    return $http({
-      method: 'POST',
-      url: '/api/belief',
-      data: {
-        //name: username,
-        post: post
-      }
-    })
-    .then(function(response){
-      return response;
-    })
-  }
+
 
   return {
-    getCategories: getCategories,
-    addPost: addPost
+    getCategories: getCategories
+
   }
 })
 

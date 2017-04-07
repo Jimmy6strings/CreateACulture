@@ -1,13 +1,13 @@
 angular.module('app.categories', ['app.checklist-model'])
 
-.controller('categoriesController', function($http, $scope, Categories) {
+.controller('categoriesController', function($scope, Categories) {
   $scope.data;
-  $scope.fontFamilies;
-  $scope.choices = [];
-  $scope.workable = [];
 // $scope is the intermediary between what the user sees and the
 // factory. $scope methods grab from the factory and display it
 // via html
+  $scope.choices = [];
+
+  $scope.workable = [];
 
   $scope.getAll = function() {
     Categories.getCategories().then(function(data){
@@ -23,15 +23,15 @@ angular.module('app.categories', ['app.checklist-model'])
     })
   };
 
-  $scope.getFonts = function() {
-    Categories.getFontFams().then(function(result){
-      $scope.fontFamilies = result;
-    })
-    // console.log($scope.fontFamilies);
-  }
+  // $scope.check = $scope.choices.length;
 
-  $scope.getFonts();
-  console.log("Workable:", $scope.workable);
+  // $scope.checkChanged = function(item){
+  //   if(item) $scope.checked++;
+  //   else $scope.checked--;
+  // }
+
+  // $scope.limit = 3;
+  // var item = items[Math.floor(Math.random()*items.length)];
 
   $scope.getAll();
   $scope.obj = {};
@@ -47,39 +47,25 @@ angular.module('app.categories', ['app.checklist-model'])
     $scope.questionTwoDiv = true;
   }
 
-  $scope.sevenBeliefsObjects = [
+  // Input
 
-  {
-    saying: "This is the first one"
-  },
-  {
-    saying: "This is the second one"
-  },
-  {
-    saying: "This is the third one"
-  }
+  // $scope.choices = ['Hope', 'Faith', 'Kindness'];
+  // $scope.primary = ['Hope'];
+  // $scope.obj = {
+  //   'Hope': ['list of beliefs'],
+  //   'Faith': ['list of beliefs'],
+  //   'Perseverance': ['list of beliefs']
+  // }
 
-  ];
+  // Output
 
-  console.log("Obj: ", $scope.obj);
-  console.log("sevenBeliefs: ", $scope.sevenBeliefs);
+  // ['four Hope beliefs', 'two Faith beliefs', 'One Kindness belief'];
 
   $scope.grabResponseAndShowBeliefs = function() {
     $scope.sevenBeliefsDiv = true;
     var index = $scope.choices.indexOf($scope.primary[0]);
     console.log(index);
     $scope.choices.unshift(($scope.choices.splice(index, 1))[0]);
-
-
-
-
-    for(var i = 0; i < $scope.sevenBeliefs.length; i ++) {
-      $scope.sevenBeliefsObjects.push({saying: $scope.sevenBeliefs[i]});
-    }
-
-    console.log($scope.sevenBeliefsObjects);
-
-
 
 
 
@@ -101,75 +87,11 @@ angular.module('app.categories', ['app.checklist-model'])
       var arr = $scope.obj[$scope.choices[2]];
       var temp = arr[Math.floor(Math.random()*arr.length)];
       if(!$scope.sevenBeliefs.includes(temp)) {
+        console.log($scope.sevenBeliefs)
         $scope.sevenBeliefs.push(temp);
       }
     }
-
-
-  };
-
-  $scope.NametagConfig = {
-    NametagLines: [
-      {
-        Label: 'Line 1',
-        Font: 'Josefin Sans'
-      },
-      {
-        Label: 'Line 2',
-        Font: 'IM Fell Great Primer'
-      }
-    ]
-  };
-
-  init();
-  function init(){
-    Categories.getFontFams().then(function(result){
-      $scope.fontFamilies = result;
-    })
   }
-
-  $scope.selectFont = function(line, index) {
-    console.log(line)
-    console.log(index)
-
-    angular.forEach($scope.fontFamilies, function (font) {
-      if (font.family == line.Font) {
-        var fontValue = font.value;
-        var fontName = font.family;
-
-        if (fontValue === 'default') {
-          document.getElementById('LineStyle' + index).style.fontFamily = 'inherit';
-        } else {
-          document.getElementById('LineStyle' + index).style.fontFamily = fontName;
-          replaceStyle('https://fonts.googleapis.com/css?family=' + fontValue, index);
-        }
-      }
-    });
-  }
-
-  function replaceStyle(url, index) {
-    if (!document.getElementById('styleTag' + index)) {
-      var styleTag = document.createElement('link');
-      styleTag.rel = 'stylesheet';
-      styleTag.id = 'styleTag' + index;
-      styleTag.type = 'text/css';
-      document.getElementsByTagName('head')[0].appendChild(styleTag);
-      replaceStyle(url, index);
-    }
-    document.getElementById('styleTag' + index).href = url;
-  }
-
-
-
-  // $scope.check = $scope.choices.length;
-
-  // $scope.checkChanged = function(item){
-  //   if(item) $scope.checked++;
-  //   else $scope.checked--;
-  // }
-
-  // $scope.limit = 3;
-  // var item = items[Math.floor(Math.random()*items.length)];
 
 
 });

@@ -65,19 +65,6 @@ module.exports = {
       });
   },
 
-  addPost: function(req, res) {
-    console.log("request body username ", req.body.username);
-    console.log("request body post ", req.body.post);
-    findOneAndChange(
-      {username: req.body.username},
-      {$push: {post: req.body.post}},
-      {safe: true, upsert: true}
-    ).catch(function(err){
-      console.log(err);
-    });
-
-  },
-
   checkAuth: function (req, res, next) {
     // checking to see if the user is authenticated
     // grab the token in the header is any

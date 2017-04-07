@@ -2,6 +2,7 @@ angular.module('app', [
   'app.factory',
   'app.auth',
   'app.categories',
+  'app.beliefs',
   'ngRoute'
 
   ])
@@ -19,8 +20,12 @@ angular.module('app', [
       templateUrl: './app/categories/categories.html',
       controller: 'categoriesController'
     })
+    .when('/index.html', {
+      templateUrl: './app/categories/categories.html',
+      controller: 'beliefsController'
+    })
     .otherwise({
-      redirectTo: '/index.html'
+      redirectTo: '/signin'
     });
   $httpProvider.interceptors.push('AttachTokens');
 })

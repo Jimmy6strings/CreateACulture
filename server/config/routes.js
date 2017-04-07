@@ -12,7 +12,6 @@ module.exports = function(app, express) {
   app.get('/api/users/signedin', userController.checkAuth);
   //get all the categories
   app.get('/api/categories', categoriesController.getCategories);
-  //create new belief from category and persist in user model
-  app.post('/api/users/post', userController.addPost);
+
 
 };
