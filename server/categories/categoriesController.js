@@ -18,6 +18,16 @@ module.exports = {
       .fail(function (error) {
         next(error);
       });
+  },
+
+  addBelief: function(req, res) {
+    findOneAndChange(
+      {name: req.body.name},
+      {$push: {beliefs: req.body.belief}},
+      {safe: true, upsert: true}
+    ).catch(function(err){
+      console.log(err);
+    });
   }
 
 };

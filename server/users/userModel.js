@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Q = require('q');
 var bcrypt = require('bcrypt-nodejs');
-// var categories = require('./categories/categoriesModel');
 var SALT_WORK_FACTOR = 10;
 var Schema = mongoose.Schema;
 
