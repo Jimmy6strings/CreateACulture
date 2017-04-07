@@ -12,9 +12,23 @@ angular.module('app.factory', [])
     });
   };
 
+  //
+  var addBelief = function(category, belief) {
+    return $http({
+      method: 'POST',
+      url: '/api/belief',
+      data: {
+        name: category,
+        belief: belief
+      }
+    })
+    .then(function(response){
+      return response;
+    })
+  };
+
   return {
     getCategories: getCategories
-
   }
 })
 

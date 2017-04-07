@@ -12,6 +12,7 @@ angular.module('app.categories', ['app.checklist-model'])
   $scope.getAll = function() {
     Categories.getCategories().then(function(data){
       $scope.data = data;
+      (console.log("Scope.data: ", $scope.data));
       for(var i = 0; i < data.length; i ++){
         $scope.workable.push(data[i].name);
       }
@@ -22,16 +23,6 @@ angular.module('app.categories', ['app.checklist-model'])
       console.log(err);
     })
   };
-
-  // $scope.check = $scope.choices.length;
-
-  // $scope.checkChanged = function(item){
-  //   if(item) $scope.checked++;
-  //   else $scope.checked--;
-  // }
-
-  // $scope.limit = 3;
-  // var item = items[Math.floor(Math.random()*items.length)];
 
   $scope.getAll();
   $scope.obj = {};
@@ -57,17 +48,19 @@ angular.module('app.categories', ['app.checklist-model'])
   //   'Perseverance': ['list of beliefs']
   // }
 
-  // Output
-
-  // ['four Hope beliefs', 'two Faith beliefs', 'One Kindness belief'];
 
   $scope.grabResponseAndShowBeliefs = function() {
+    console.log("reached grabResponseAndShowBeliefs", "Scope.obj: ", $scope.obj);
     $scope.sevenBeliefsDiv = true;
     var index = $scope.choices.indexOf($scope.primary[0]);
     console.log(index);
     $scope.choices.unshift(($scope.choices.splice(index, 1))[0]);
 
+    // for(var i = 0; i < $scope.sevenBeliefs.length; i ++) {
+    //   $scope.sevenBeliefsObjects.push({saying: $scope.sevenBeliefs[i]});
+    // }
 
+    // console.log("Scope.sevenBeliefsObjects:", $scope.sevenBeliefsObjects);
 
     while ($scope.sevenBeliefs.length < 4) {
       var arr = $scope.obj[$scope.choices[0]];
@@ -91,6 +84,6 @@ angular.module('app.categories', ['app.checklist-model'])
         $scope.sevenBeliefs.push(temp);
       }
     }
-  }
+  };
 
 });

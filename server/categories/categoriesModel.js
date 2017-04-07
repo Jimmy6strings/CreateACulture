@@ -1,24 +1,21 @@
 var mongoose = require('mongoose');
 var assert = require('assert');
 var bluebird = require('bluebird');
-var db = require('../index.js');
+// var db = require('../index.js');
 
 //up to 5 questions for rendering categories
 //have descriptions for each category and question
 
 var categorySchema = new mongoose.Schema({
   name: String,
-  beliefs: {
-    type: [String],
-    index: { sparse: true }
-  }
+  beliefs: [String]
 });
 
 var Category = mongoose.model('Category', categorySchema);
 
 var data = [
   {
-    "name":"Faith",
+    "category":"Faith",
     "beliefs":[
       "Pray every morning",
       "You will argue with yourself that there is no way forward. But with God, nothing is impossible",
@@ -27,7 +24,7 @@ var data = [
     ]
   },
   {
-    "name":"Hope",
+    "category":"Hope",
     "beliefs":[
       "Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence",
       "Learn from yesterday. Live for today. Hope for tomorrow",
@@ -38,7 +35,7 @@ var data = [
     ]
   },
   {
-    "name":"Kindness",
+    "category":"Kindness",
     "beliefs":[
       "Always be kind",
       "People are flawed. So are you. Forgive them",
@@ -49,9 +46,9 @@ var data = [
     ]
   },
   {
-    "name":"Hard_Work",
+    "category":"Hard_Work",
     "beliefs":[
-      "Feeling bad? WORK your cares away",
+      "Feeling bad? WORK yourself better",
       "Wake up two hours early to read, work or learn something new",
       "Pain is weakness leaving the body",
       "Hard Work brings love and acceptance",
@@ -65,7 +62,7 @@ var data = [
     ]
   },
   {
-    "name":"Perseverance",
+    "category":"Perseverance",
     "beliefs":[
       "Never, ever quit",
       "Quitting is for lesser souls",
@@ -81,7 +78,7 @@ var data = [
     ]
   },
   {
-    "name":"Prudence",
+    "category":"Prudence",
     "beliefs":[
       "Invest one-fourth of what you earn",
       "Keep a ledger",
@@ -90,7 +87,7 @@ var data = [
     ]
   },
   {
-    "name":"Temperance",
+    "category":"Temperance",
     "beliefs":[
       "In times of temptation, reflect on what you're grateful for",
       "Meditation is exercise for your mind. Do it every day",
@@ -108,7 +105,6 @@ var data = [
    // Category.collection.insertMany(data, function(err,r) {
    //  assert.equal(null, err);
    //  assert.equal(7, r.insertedCount);
-   //  console.log("data collection added", data)
    // });
 
 module.exports = Category;

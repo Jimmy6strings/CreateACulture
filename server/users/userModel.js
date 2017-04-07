@@ -14,7 +14,6 @@ var UserSchema = new Schema({
     type: String,
     required: true
   },
-  post: [String],
   salt: String
 });
 

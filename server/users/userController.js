@@ -1,10 +1,16 @@
 var jwt = require('jwt-simple');
 var User = require('./userModel.js');
+var UserCategory = require('./userCategoriesModel.js');
 var mongoose = require('mongoose');
 var Q = require('q');
 
 var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
+var createUserCategory = Q.nbind(UserCategory.create, UserCategory);
+var findOneAndChange = Q.nbind(UserCategory.findOneAndUpdate, UserCategory);
+
+var categories = ['Faith', 'Hope', 'Kindness', 'Fortitude', 'Diligence', 
+                  'Prudence', 'Temperance'];
 
 module.exports = {
   signin: function (req, res, next) {
@@ -58,6 +64,19 @@ module.exports = {
         res.json({token: token});
         console.log("this is the new user token " + token)
       })
+      .then(function (user) {
+        if (user) {
+          next(new Error('user already exists!'));
+          console.log('user already exists!');
+        } else {
+          categories.forEach(function(cat){
+            return createUserCategory({
+              username: username,
+              category: cat
+            });      
+          });
+        }
+      })
       .fail(function (error) {
         next(error);
       });
@@ -81,6 +100,28 @@ module.exports = {
           next(error);
         });
     }
+  }, 
+
+  addUserBelief: function(req, res) {
+    findOneAndChange(
+      {username: req.body.username, name: req.body.category}, 
+      {$push: {beliefs: req.body.belief}},
+      {safe: true, upsert: true}
+    ).catch(function(err){
+      console.log(err);
+    });
+  },
+
+  addUserCategory: function(req, res) {
+    console.log("reached addUserCategory function");
+    console.log('req.body: ', req.body);
+    createUserCategory({
+      username: req.body.username,
+      name: req.body.category
+    }).catch(function(err){
+      console.log(err);
+    });
   }
+
 };
 
