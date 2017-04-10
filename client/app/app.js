@@ -18,6 +18,7 @@ angular.module('app', [
     .when('/index.html', {
       templateUrl: './app/categories/categories.html',
       controller: 'categoriesController',
+      controller: 'AuthController'
     })
     .otherwise({
       redirectTo: '/signin'

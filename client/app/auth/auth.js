@@ -26,4 +26,17 @@ angular.module('app.auth', [])
         console.error(error);
       });
   };
+
+  $scope.signout = function () {
+    Auth.signout($scope.user)
+      .then(function (token) {
+        $window.localStorage.setItem('com.createaculture', token);
+        $location.path('/signin');
+        console.log('user has signed out!')
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
 });
