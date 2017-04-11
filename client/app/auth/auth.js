@@ -39,6 +39,11 @@ angular.module('app.auth', [])
       });
   };
 
+   $scope.facebook = {
+    username : "",
+    email : ""
+  };
+
   $scope.onFBLogin = function() {
     FB.login(function(response) {
       if(response.authResponse) {
