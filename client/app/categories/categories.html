@@ -1,26 +1,27 @@
 
   <div ng-controller="categoriesController">
-
+    <div ng-show="questionOneDiv">
    <h1 class="categoriesTitle">Categories</h1>
-
 
       <h2>Which three do you admire most?</h2>
 
-        <label ng-repeat="category in data">
-        <input type="checkbox" checklist-model="choices" checklist-value="category.name" checklist-change="checkChanged(name)" ng-disabled="checked===limit">{{category.name}}</label>
+        <label class="checkboxList" ng-repeat="category in data">
+        <input type="checkbox" checklist-model="choices" checklist-value="category.name" class="checkboxList" checklist-change="checkChanged(name)" ng-disabled="checked===limit">{{category.name}}</label>
 
-        <p>{{choices}}</p>
+        <!-- <p>{{choices}}</p> -->
 
      <button type="submit" ng-click="grabResponseAndShowQuestionTwo()" class="choiceOneBtn">Submit</button>
+    </div>
 
      <div ng-show="questionTwoDiv">
      <h2>Of the three listed, which is most important?</h2>
        <label ng-repeat="category in choices">
-       <input class="checkBox" type="checkbox" checklist-model="primary" checklist-value="category">{{category}}</label>
+       <input class="checkboxList" type="checkbox" checklist-model="primary" checklist-value="category">{{category}}</label>
+       <br>
 
-       <p>{{primary}}</p>
+<!--        <p>{{primary}}</p> -->
 
-       <button type="submit" ng-click="grabResponseAndShowBeliefs()" class="showBeliefButton">Submit</button>
+       <button type="submit" ng-click="grabResponseAndShowBeliefs()" class="btn btn-success btn-info showBeliefButton">Submit</button>
      </div>
 
      <br/>
@@ -29,7 +30,7 @@
     <div class="beliefsContainer" ng-show="sevenBeliefsDiv">
       <nav class="beliefsNav">
           <div class="dropdown">
-            <button class="dropbtn">Fonts</button>
+            <button class="btn btn-success btn-info dropbtn">Fonts</button>
             <div class="dropdown-content">
               <div class="checkboxRed">
                 <label>
@@ -59,14 +60,49 @@
           </div>
       </nav>
 
-       <h3>These are your beliefs!</h3>
-       <div ng-repeat="belief in sevenBeliefs">
+       <h3>Your Cultural Summary</h3>
+       <div ng-style="{'font-size': '30px'}" ng-repeat="belief in sevenBeliefs">
 
           <span ng-class="{ bubble: insane, Monospace: monoSpace, Impact: Impact, comic: comic }">{{$index+1}}. {{belief}}</span>
       <br/>
+      <br/>
 
 
-    </div>
+      </div>
+
+      <h2>Want to add your own to the list?</h2>
+
+      <br/>
+
+      <div class="addToSevenBeliefs">
+      <input type="text" name="addBelief" ng-model="addedBelief" ngMaxLength="240" required="String">
+
+        <button type="submit" ng-click="grabResponseAndAddToSevenBeliefs()" class="btn btn-success btn-info addToBeliefsButton">Submit</button>
+
+      </div>
+
+
+      <div id="makeAnImage">
+
+          <p>Image to use:</p>
+          <img id="scream" src="img_the_scream.jpg" alt="The Scream" width="200" height="200">
+
+          <p>Canvas to fill:</p>
+          <canvas id="myCanvas" width="500" height="600" style="border:1px solid #d3d3d3;">
+          ot support the HTML5 canvas tag.</canvas>
+
+          <p><button onclick="myCanvas()">Try it</button></p>
+
+
+
+
+      </div>
+
+
+
+
+
+
 
   </div>
 

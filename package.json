@@ -23,14 +23,16 @@
   "homepage": "https://github.com/Jimmy6strings/CreateACulture#readme",
   "dependencies": {
     "angular": "^1.6.3",
-    "angular-material": "^1.1.3",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "bootstrap": "^4.0.0-alpha.4",
+    "canvas": "^1.6.5",
     "checklist-model": "^0.11.0",
     "composer": "^0.14.0",
     "express": "^4.15.2",
+    "fabric": "^1.7.9",
+    "fabric-angular": "^1.0.4",
     "jwt-simple": "^0.5.1",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.2",
@@ -39,6 +41,7 @@
     "q": "^1.5.0"
   },
   "devDependencies": {
-    "mongoose-seed-plus": "^0.1.2"
+    "mongoose-seed-plus": "^0.1.2",
+    "node-gyp": "^3.6.0"
   }
 }

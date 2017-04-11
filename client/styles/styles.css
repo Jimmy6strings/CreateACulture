@@ -1,6 +1,6 @@
 
 
-body {
+/*body {
   margin: 0;
   margin-top: 15px;
   margin-left: 15px;
@@ -11,7 +11,7 @@ body {
         height:100%;
       background: linear-gradient(0deg, coral , teal 20%, white 60%) no-repeat;
 
-}
+}*/
 
 h1 {
   font-size: 50px;
@@ -26,7 +26,16 @@ a {
   font-size: 25px;
 }
 
-p {
+/*.checkboxList {
+    border:1px solid #000;
+    background-color:#fff; 
+    color:#000;
+    width:100px; 
+    height: 100px; 
+    overflow-y: scroll;
+}*/
+
+/*p {
   font-size: 25px;
 }
 
@@ -66,7 +75,7 @@ p {
 
 .showBeliefButton {
 
-}
+}*/
 .cultureIcon {
   margin-left: 640px;
     margin-right: 20px;
