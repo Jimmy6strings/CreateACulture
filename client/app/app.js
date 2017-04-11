@@ -2,6 +2,7 @@ angular.module('app', [
   'app.factory',
   'app.auth',
   'app.categories',
+  // 'app.fabric',
   'ngRoute'
 
   ])
@@ -19,7 +20,12 @@ angular.module('app', [
       templateUrl: './app/categories/categories.html',
       controller: 'categoriesController',
       controller: 'AuthController'
+      // controller: 'fabricController'
     })
+    // .when('/fabric', {
+    //   templateUrl: './app/fabric/fabric.html',
+    //   controller: 'fabricController'
+    // })
     .otherwise({
       redirectTo: '/signin'
     });

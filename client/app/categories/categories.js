@@ -1,6 +1,6 @@
 angular.module('app.categories', ['app.checklist-model'])
 
-.controller('categoriesController', function($scope, Categories) {
+.controller('categoriesController', function($scope, $location, Categories) {
   $scope.data;
 // $scope is the intermediary between what the user sees and the
 // factory. $scope methods grab from the factory and display it
@@ -78,14 +78,14 @@ angular.module('app.categories', ['app.checklist-model'])
   };
 
   $scope.beliefText = '';
-
+  $scope.fabricShow = false;
   $scope.grabResponseAndAddToSevenBeliefs = function() {
     $scope.sevenBeliefs.push($scope.addedBelief);
   };
 
   $scope.myCanvas = function() {
 
-
+  // $location.path('/fabric');
 
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
@@ -102,6 +102,7 @@ angular.module('app.categories', ['app.checklist-model'])
     ctx.fillText($scope.sevenBeliefs[4],110,450,280);
     ctx.fillText($scope.sevenBeliefs[5],110,470,280);
     ctx.fillText($scope.sevenBeliefs[6],110,490,280);
+
   }
 
-});
+})
