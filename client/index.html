@@ -10,7 +10,7 @@
     <title>CreateACulture</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="./styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css">
     <link href="assets/css/gaia.css" rel="stylesheet"/>
 
     <!--     Fonts and icons     -->
@@ -57,7 +57,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Sign In/Sign Up</a>
+                        <a ui-sref-active="selected" href="#/signin">Sign In</a>
+                    </li>
+                    <li>
+                        <a ui-sref-active="selected" href="#/signup">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -118,7 +121,7 @@
            <br>
            <a ui-sref-active="selected" href="#/signin" ng-click="signout()">sign out</a>
         </nav>
-      </div>
+    </div>
 
 
     <div class="section">
