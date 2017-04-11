@@ -29,38 +29,23 @@ angular.module('app.categories', ['app.checklist-model'])
 
   $scope.primary = [];
 
+  $scope.questionOneDiv = true;
   $scope.questionTwoDiv = false;
   $scope.sevenBeliefsDiv = false;
 
   $scope.sevenBeliefs = [];
 
   $scope.grabResponseAndShowQuestionTwo = function() {
+    $scope.questionOneDiv = false;    
     $scope.questionTwoDiv = true;
   }
 
-  // Input
-
-  // $scope.choices = ['Hope', 'Faith', 'Kindness'];
-  // $scope.primary = ['Hope'];
-  // $scope.obj = {
-  //   'Hope': ['list of beliefs'],
-  //   'Faith': ['list of beliefs'],
-  //   'Perseverance': ['list of beliefs']
-  // }
-
-
   $scope.grabResponseAndShowBeliefs = function() {
-    console.log("reached grabResponseAndShowBeliefs", "Scope.obj: ", $scope.obj);
+    $scope.questionTwoDiv = false;   
     $scope.sevenBeliefsDiv = true;
     var index = $scope.choices.indexOf($scope.primary[0]);
     console.log(index);
     $scope.choices.unshift(($scope.choices.splice(index, 1))[0]);
-
-    // for(var i = 0; i < $scope.sevenBeliefs.length; i ++) {
-    //   $scope.sevenBeliefsObjects.push({saying: $scope.sevenBeliefs[i]});
-    // }
-
-    // console.log("Scope.sevenBeliefsObjects:", $scope.sevenBeliefsObjects);
 
     while ($scope.sevenBeliefs.length < 4) {
       var arr = $scope.obj[$scope.choices[0]];
@@ -84,6 +69,39 @@ angular.module('app.categories', ['app.checklist-model'])
         $scope.sevenBeliefs.push(temp);
       }
     }
+    $scope.sevenBeliefs.forEach(function(belief, index){
+      // $scope.beliefText += $"{index + 1}.  {belief}\n";
+      $scope.beliefText += (index + 1) + ".  " + belief + "\r\n";
+
+    });
+    console.log("belieftext:", $scope.beliefText);
   };
+
+  $scope.beliefText = '';
+
+  $scope.grabResponseAndAddToSevenBeliefs = function() {
+    $scope.sevenBeliefs.push($scope.addedBelief);
+  };
+
+  $scope.myCanvas = function() {
+
+
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+
+    var img = document.getElementById("scream");
+    // console.log(img.src);
+    ctx.drawImage(img,120,50);
+
+    ctx.font = "15px Arial";
+    ctx.fillText($scope.sevenBeliefs[0],110,370,280);
+    ctx.fillText($scope.sevenBeliefs[1],110,390,280);
+    ctx.fillText($scope.sevenBeliefs[2],110,410,280);
+    ctx.fillText($scope.sevenBeliefs[3],110,430,280);
+    ctx.fillText($scope.sevenBeliefs[4],110,450,280);
+    ctx.fillText($scope.sevenBeliefs[5],110,470,280);
+    ctx.fillText($scope.sevenBeliefs[6],110,490,280);
+  }
 
 });
