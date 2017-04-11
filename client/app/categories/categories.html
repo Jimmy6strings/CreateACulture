@@ -28,9 +28,12 @@
      <br/>
 
     <div class="beliefsContainer" ng-show="sevenBeliefsDiv">
+      <h2>Your Cultural Summary</h2>
+      <br/>
+      <br/>
       <nav class="beliefsNav">
           <div class="dropdown">
-            <button class="btn btn-success btn-info dropbtn">Fonts</button>
+            <button class="dropbtn">Change the Font</button>
             <div class="dropdown-content">
               <div class="checkboxRed">
                 <label>
@@ -60,13 +63,14 @@
           </div>
       </nav>
 
-       <h3>Your Cultural Summary</h3>
-       <div ng-style="{'font-size': '30px'}" ng-repeat="belief in sevenBeliefs">
-
-          <span ng-class="{ bubble: insane, Monospace: monoSpace, Impact: Impact, comic: comic }">{{$index+1}}. {{belief}}</span>
       <br/>
       <br/>
+      
+      <div ng-style="{'font-size': '20px'}" ng-repeat="belief in sevenBeliefs">
 
+        <span ng-class="{ bubble: insane, Monospace: monoSpace, Impact: Impact, comic: comic }">{{$index+1}}. {{belief}}</span>
+        <br/>
+        <br/>
 
       </div>
 
@@ -75,12 +79,13 @@
       <br/>
 
       <div class="addToSevenBeliefs">
-      <input type="text" name="addBelief" ng-model="addedBelief" ngMaxLength="240" required="String">
+        <input type="text" name="addBelief" ng-model="addedBelief" ngMaxLength="240" required="String">
 
-        <button type="submit" ng-click="grabResponseAndAddToSevenBeliefs()" class="btn btn-success btn-info addToBeliefsButton">Submit</button>
-
+          <button type="submit" ng-click="grabResponseAndAddToSevenBeliefs()" class="btn btn-success btn-info addToBeliefsButton">Submit</button>
       </div>
 
+      <br/>
+      <br/>
 
       <div id="makeAnImage">
 
@@ -91,19 +96,9 @@
           <canvas id="myCanvas" width="500" height="600" style="border:1px solid #d3d3d3;">
           ot support the HTML5 canvas tag.</canvas>
 
-          <p><button onclick="myCanvas()">Try it</button></p>
-
-
-
+          <p><button ng-click="myCanvas()">Try it</button></p>
 
       </div>
-
-
-
-
-
-
-
   </div>
 
 
