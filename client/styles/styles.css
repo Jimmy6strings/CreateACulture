@@ -16,6 +16,9 @@ body {
 h1 {
   font-size: 50px;
 }
+a {
+  font-size: 15px;
+}
 
 /* index.html -------------------------------------------------------------  */
 
@@ -140,4 +143,13 @@ p {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+}
+
+/* signin.html signup.html ------------------------------------------------------------------------------*/
+
+.redirectSignup {
+  color: purple;
+}
+.redirectSignin {
+  color: purple;
 }

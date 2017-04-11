@@ -1,8 +1,7 @@
 # Dependency directories
 node_modules/
 
-# Floobits
-.floo
-.floobit
-.floo
-.flooignore
+# api keys
+
+config/facebookApi.js
+config/composer.json

@@ -1,10 +1,18 @@
-<!-- <div id='signin'> -->
+<div id='signin'>
   <h1>Sign In</h1>
   <form name='signinForm' ng-submit='signin()'>
     <input type='text' ng-model='user.username'>
     <input type='password' ng-model='user.password'>
     <button>submit</button>
   </form>
+    <a class="redirectSignup" href='#/signup'>Don't have an account? <strong>Click here to sign up!</strong></a>
+
   <br>
-  <a href='#/signup'>Don't have an account? <strong>Click here to sign up!</strong></a>
+  <h2>Facebook Login</h2>
+  <input type="button" value="Login" ng-click="onFBLogin()" style="width: 75px; height: 40px">
+  <h4>{{facebook.username}}</h4>
+  <h4>{{facebook.email}}</h4>
+  <img ng-src="{{fb_image}}" style="width: 75px; height: 70px">
+  <br>
+
 </div>
