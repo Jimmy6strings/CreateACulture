@@ -144,3 +144,12 @@ p {
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+/* signin.html signup.html ------------------------------------------------------------------------------*/
+
+.redirectSignup {
+  color: purple;
+}
+.redirectSignin {
+  color: purple;
+}
