@@ -31,8 +31,6 @@ module.exports = {
   },
 
   getRandomBelief: function(req, res) {
-    console.log("Reached getRandomBelief");
-    console.log("req.body: ", req.body);
     findCategory({name: req.body.name})
     .then(function(cat){
       res.json(cat.beliefs[Math.floor(Math.random()*(cat.beliefs.length))]);

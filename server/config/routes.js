@@ -22,4 +22,7 @@ module.exports = function(app, express) {
 
   app.post('/api/getrandombelief', categoriesController.getRandomBelief);
 
+  app.put('/api/updateaddedbelief', userController.updateAddedBelief);
+
+
 };

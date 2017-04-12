@@ -17,8 +17,9 @@ angular.module('app.auth', [])
 
   $scope.signup = function () {
     Auth.signup($scope.user)
-      .then(function (token) {
-        $window.localStorage.setItem('com.createaculture', token);
+      .then(function (resp) {
+        $window.localStorage.setItem('com.createaculture', resp.data.token);
+        $window.localStorage.setItem('user', resp.data.user);        
         $location.path('/index.html');
         console.log("New user signed up!")
       })

@@ -152,6 +152,19 @@ module.exports = {
     }).catch(function(err){
       console.log(err);
     });
+  },
+
+  updateAddedBelief: function(req, res) {
+    console.log("Req.body.name: ", req.body.username);
+    console.log("Req.body.index: ", req.body.index);
+    console.log("Req.body.updated: ", req.body.updated);
+    // did not work
+    var set = {$set: {}};
+    set.$set["mainBeliefs." + req.body.index] = req.body.updated;
+    findUserAndChange({username: req.body.username}, set)
+    .catch(function(err){
+      console.log(err);
+    });
   }
 
 };

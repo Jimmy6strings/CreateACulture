@@ -66,9 +66,11 @@
       <br/>
       <br/>
       
-      <div ng-style="{'font-size': '20px'}" ng-repeat="belief in sevenBeliefs">
+      <div ng-style="{'font-size': '20px'}" ng-repeat="belief in sevenBeliefs track by $index">
 
-        <span ng-class="{ bubble: insane, Monospace: monoSpace, Impact: Impact, comic: comic }">{{$index+1}}. {{belief}}</span>
+        <span ng-class="{ bubble: insane, Monospace: monoSpace, Impact: Impact, comic: comic }">{{$index+1}}. {{belief}}<button class="choiceOneBtn" ng-click="getRandomBelief($index);">Change It</button><div ng-show="beliefDiv{{$index}}"><input type="text" name="updateBelief" ng-model="updatedBelief" placeholder="{{sevenBeliefs[$index]}}" ngMaxLength="240" required="String">
+
+          <button type="submit" ng-click="updateAddedBelief($index, updatedBelief)" class="btn btn-success btn-info updatedAddedBeliefButton">Update</button></div> </span>
         <br/>
         <br/>
 

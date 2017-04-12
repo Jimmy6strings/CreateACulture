@@ -1,6 +1,6 @@
 angular.module('app.categories', ['app.checklist-model'])
 
-.controller('categoriesController', function($scope, $location, Categories) {
+.controller('categoriesController', function($scope, $location, Categories, Auth) {
   $scope.data;
 // $scope is the intermediary between what the user sees and the
 // factory. $scope methods grab from the factory and display it
@@ -12,7 +12,6 @@ angular.module('app.categories', ['app.checklist-model'])
   $scope.getAll = function() {
     Categories.getCategories().then(function(data){
       $scope.data = data;
-      (console.log("Scope.data: ", $scope.data));
       for(var i = 0; i < data.length; i ++){
         $scope.workable.push(data[i].name);
       }
@@ -35,9 +34,70 @@ angular.module('app.categories', ['app.checklist-model'])
 
   $scope.sevenBeliefs = [];
 
+  $scope.addBeliefsToUser = function(beliefsArray) {
+    Auth.addBeliefsToUser(beliefsArray);
+  }
+
+  $scope.addBeliefToUser = function(beliefString) {
+    Auth.addBeliefToUser(beliefString);
+  }
+
   $scope.grabResponseAndShowQuestionTwo = function() {
     $scope.questionOneDiv = false;    
     $scope.questionTwoDiv = true;
+  }
+
+  $scope.getRandomBelief = function(itemId) {
+    if(itemId <= 3){
+      var newbie = Categories.getRandomBelief($scope.choices[0], itemId)
+      .then(function(data) {
+        $scope.sevenBeliefs[itemId] = data;
+      }).catch(function(err) {
+        console.log(err);
+      })
+    };
+    if(itemId === 4 || itemId === 5) {
+      var newbie = Categories.getRandomBelief($scope.choices[1], itemId)
+      .then(function(data) {
+        $scope.sevenBeliefs[itemId] = data;
+      }).catch(function(err) {
+        console.log(err);
+      })      
+    };
+    if(itemId === 6) {
+      // $scope.beliefDiv6 = true;
+      var newbie = Categories.getRandomBelief($scope.choices[2], itemId)
+      .then(function(data) {
+        $scope.sevenBeliefs[itemId] = data;
+      }).catch(function(err) {
+        console.log(err);
+      })     
+    };
+    if(itemId === 7) {
+      $scope.beliefDiv7 = true;
+    }
+    if(itemId === 8) {
+      $scope.beliefDiv8 = true;
+    }
+    if(itemId === 9) {
+      $scope.beliefDiv9 = true;
+    }
+    return newbie;
+  }
+
+  $scope.beliefDiv7 = false;
+  $scope.beliefDiv8 = false;
+  $scope.beliefDiv9 = false;
+
+  $scope.updateAddedBelief = function(index, updatedBelief) {
+    $scope.sevenBeliefs[index] = updatedBelief;
+    Auth.updateAddedBelief(index, updatedBelief)
+    .then(function(success) {
+      $scope.updatedBelief = null;
+      console.log(success);
+    }).catch(function(err) {
+      console.log(err);
+    })
   }
 
   $scope.grabResponseAndShowBeliefs = function() {
@@ -69,18 +129,20 @@ angular.module('app.categories', ['app.checklist-model'])
         $scope.sevenBeliefs.push(temp);
       }
     }
-    $scope.sevenBeliefs.forEach(function(belief, index){
-      // $scope.beliefText += $"{index + 1}.  {belief}\n";
-      $scope.beliefText += (index + 1) + ".  " + belief + "\r\n";
 
+    $scope.sevenBeliefs.forEach(function(belief, index){
+      $scope.beliefText += (index + 1) + ".  " + belief + "\r\n";
     });
-    console.log("belieftext:", $scope.beliefText);
+
+    $scope.addBeliefsToUser($scope.sevenBeliefs);
   };
 
   $scope.beliefText = '';
   $scope.fabricShow = false;
   $scope.grabResponseAndAddToSevenBeliefs = function() {
     $scope.sevenBeliefs.push($scope.addedBelief);
+    $scope.addBeliefToUser($scope.addedBelief);
+    $scope.addedBelief = null;
   };
 
   $scope.myCanvas = function() {
@@ -102,6 +164,10 @@ angular.module('app.categories', ['app.checklist-model'])
     ctx.fillText($scope.sevenBeliefs[4],110,450,280);
     ctx.fillText($scope.sevenBeliefs[5],110,470,280);
     ctx.fillText($scope.sevenBeliefs[6],110,490,280);
+    // if($scope.sevenBeliefs[7]){
+    ctx.fillText($scope.sevenBeliefs[7],110,510,280);   
+    // }
+      // ctx.fillText($scope.sevenBeliefs[8],110,530,280);   
 
   }
 
