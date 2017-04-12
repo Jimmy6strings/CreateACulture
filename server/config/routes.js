@@ -10,12 +10,14 @@ module.exports = function(app, express) {
   // check user authentication
   app.get('/api/users/signedin', userController.checkAuth);
   // add belief to existing user category
-  app.post('/api/userbeliefs', userController.addUserBelief);
+  // app.post('/api/addbelief', userController.addUserBelief);
   // create new category specific only to that user
   app.post('/api/usercategories', userController.addUserCategory);
   // get all categories from main collection
   app.get('/api/categories', categoriesController.getCategories);
   // app.post('/api/categories', categoriesController.clearCategories);
-  app.post('/api/belief', categoriesController.addBelief);
+  app.post('/api/addbeliefs', userController.addMainBeliefs);
+
+  app.post('/api/addbelief', userController.addMainBelief);
 
 };
