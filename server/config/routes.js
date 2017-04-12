@@ -20,4 +20,6 @@ module.exports = function(app, express) {
 
   app.post('/api/addbelief', userController.addMainBelief);
 
+  app.post('/api/getrandombelief', categoriesController.getRandomBelief);
+
 };
