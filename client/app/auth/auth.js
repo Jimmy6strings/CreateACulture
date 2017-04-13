@@ -20,7 +20,7 @@ angular.module('app.auth', [])
       .then(function (resp) {
         $window.localStorage.setItem('com.createaculture', resp.data.token);
         $window.localStorage.setItem('user', resp.data.user);        
-        $location.path('/index.html');
+        $location.path('/firstseven');
         console.log("New user signed up!")
       })
       .catch(function (error) {

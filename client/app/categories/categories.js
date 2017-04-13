@@ -1,11 +1,16 @@
 angular.module('app.categories', ['app.checklist-model'])
 
-.controller('categoriesController', function($scope, $location, Categories, Auth) {
+.service('dataService', function () {
+  this.choices = [];
+  this.primary = [];
+  this.sevenBeliefs = [];
+})
+
+.controller('categoriesController', function($scope, $location, dataService, Categories, Auth) {
   $scope.data;
 // $scope is the intermediary between what the user sees and the
 // factory. $scope methods grab from the factory and display it
 // via html
-  $scope.choices = [];
 
   $scope.workable = [];
 
@@ -23,16 +28,21 @@ angular.module('app.categories', ['app.checklist-model'])
     })
   };
 
+  $scope.showchoices = function() {
+    console.log("chocies: ", $scope.choices);
+  }
+
   $scope.getAll();
   $scope.obj = {};
 
-  $scope.primary = [];
+  $scope.beliefDiv7 = true;
+  $scope.beliefDiv8 = true;
+  $scope.beliefDiv9 = true;
 
-  $scope.questionOneDiv = true;
-  $scope.questionTwoDiv = false;
-  $scope.sevenBeliefsDiv = false;
+  $scope.sevenBeliefs = dataService.sevenBeliefs;
 
-  $scope.sevenBeliefs = [];
+  $scope.choices = dataService.choices;
+  $scope.primary = dataService.primary;
 
   $scope.addBeliefsToUser = function(beliefsArray) {
     Auth.addBeliefsToUser(beliefsArray);
@@ -43,8 +53,9 @@ angular.module('app.categories', ['app.checklist-model'])
   }
 
   $scope.grabResponseAndShowQuestionTwo = function() {
-    $scope.questionOneDiv = false;    
-    $scope.questionTwoDiv = true;
+    $location.path('/finalthree');
+    // $scope.questionOneDiv = false;    
+    // $scope.questionTwoDiv = true;
   }
 
   $scope.getRandomBelief = function(itemId) {
@@ -101,8 +112,7 @@ angular.module('app.categories', ['app.checklist-model'])
   }
 
   $scope.grabResponseAndShowBeliefs = function() {
-    $scope.questionTwoDiv = false;   
-    $scope.sevenBeliefsDiv = true;
+    $location.path('/chosenseven');   
     var index = $scope.choices.indexOf($scope.primary[0]);
     console.log(index);
     $scope.choices.unshift(($scope.choices.splice(index, 1))[0]);
@@ -138,12 +148,16 @@ angular.module('app.categories', ['app.checklist-model'])
   };
 
   $scope.beliefText = '';
-  $scope.fabricShow = false;
+
   $scope.grabResponseAndAddToSevenBeliefs = function() {
     $scope.sevenBeliefs.push($scope.addedBelief);
     $scope.addBeliefToUser($scope.addedBelief);
     $scope.addedBelief = null;
   };
+
+  $scope.makeImage = function() {
+    $location.path('/create');
+  }
 
   $scope.myCanvas = function() {
 

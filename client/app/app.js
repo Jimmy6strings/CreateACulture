@@ -16,11 +16,27 @@ angular.module('app', [
       templateUrl: './app/auth/signup.html',
       controller: 'AuthController'
     })
-    .when('/index.html', {
-      templateUrl: './app/categories/categories.html',
+    .when('/', {
+      templateUrl: './app/categories/main.html',
       controller: 'categoriesController',
       controller: 'AuthController'
       // controller: 'fabricController'
+    })
+    .when('/firstseven', {
+      templateUrl: './app/categories/firstseven.html',
+      controller: 'categoriesController'     
+    })
+    .when('/finalthree', {
+      templateUrl: './app/categories/finalthree.html',
+      controller: 'categoriesController'
+    })
+    .when('/chosenseven', {
+      templateUrl: './app/categories/chosenseven.html',
+      controller: 'categoriesController'     
+    })
+    .when('/create', {
+      templateUrl: './app/categories/create.html',
+      controller: 'categoriesController'     
     })
     // .when('/fabric', {
     //   templateUrl: './app/fabric/fabric.html',

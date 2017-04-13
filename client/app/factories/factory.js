@@ -26,8 +26,6 @@ angular.module('app.factory', [])
     })
   };
 
-
-
   return {
     getCategories: getCategories,
     getRandomBelief: getRandomBelief
