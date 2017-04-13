@@ -8,6 +8,7 @@ var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
 var createUserCategory = Q.nbind(UserCategory.create, UserCategory);
 var findOneAndChange = Q.nbind(UserCategory.findOneAndUpdate, UserCategory);
+var findUserAndChange = Q.nbind(User.findOneAndUpdate, User);
 
 var categories = ['Faith', 'Hope', 'Kindness', 'Fortitude', 'Diligence', 
                   'Prudence', 'Temperance'];
@@ -28,7 +29,7 @@ module.exports = {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
                 console.log("this is the users token " + token);
-                res.json({token: token});
+                res.json({token: token, username: username});
               } else {
                 return next(new Error('No user'));
               }
@@ -61,7 +62,7 @@ module.exports = {
       .then(function (user) {
         // create token to send back for auth
         var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+        res.send(JSON.stringify({token: token, user: username}));
         console.log("this is the new user token " + token)
       })
       .then(function (user) {
@@ -83,12 +84,13 @@ module.exports = {
   },
 
   checkAuth: function (req, res, next) {
+    console.log('Request in CheckAuth: ', req);
     var token = req.headers['x-access-token'];
     if (!token) {
       next(new Error('No token'));
     } else {
       var user = jwt.decode(token, 'secret');
-      findUser({email: user.email})
+      findUser({username: user.username})
         .then(function (foundUser) {
           if (foundUser) {
             res.send(200);
@@ -101,6 +103,35 @@ module.exports = {
         });
     }
   }, 
+
+  // The two functions below look very similar. The first 
+  // is for the initial push of ARRAY of beliefs into the 
+  // user's mainBeliefs field
+
+  addMainBeliefs: function(req, res) {
+    console.log("Request.body: ", req.body);
+    findUserAndChange(
+      {username: req.body.username},
+      {$pushAll: {mainBeliefs: req.body.beliefs}},
+      {safe: true, upsert: true}
+    ).catch(function(err){
+      console.log(err);
+    });
+  },
+
+  // The one below is for adding a SINGLE belief to the 
+  // user's mainBeliefs field
+
+  addMainBelief: function(req, res) {
+    console.log("Request.body: ", req.body);
+    findUserAndChange(
+      {username: req.body.username},
+      {$push: {mainBeliefs: req.body.belief}},
+      {safe: true, upsert: true}
+    ).catch(function(err){
+      console.log(err);
+    });
+  },
 
   addUserBelief: function(req, res) {
     findOneAndChange(
@@ -119,6 +150,19 @@ module.exports = {
       username: req.body.username,
       name: req.body.category
     }).catch(function(err){
+      console.log(err);
+    });
+  },
+
+  updateAddedBelief: function(req, res) {
+    console.log("Req.body.name: ", req.body.username);
+    console.log("Req.body.index: ", req.body.index);
+    console.log("Req.body.updated: ", req.body.updated);
+    // did not work
+    var set = {$set: {}};
+    set.$set["mainBeliefs." + req.body.index] = req.body.updated;
+    findUserAndChange({username: req.body.username}, set)
+    .catch(function(err){
       console.log(err);
     });
   }

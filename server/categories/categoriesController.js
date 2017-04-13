@@ -28,6 +28,16 @@ module.exports = {
     ).catch(function(err){
       console.log(err);
     });
+  },
+
+  getRandomBelief: function(req, res) {
+    findCategory({name: req.body.name})
+    .then(function(cat){
+      res.json(cat.beliefs[Math.floor(Math.random()*(cat.beliefs.length))]);
+    })
+    .fail(function(error) {
+      next(error);
+    });
   }
 
 };

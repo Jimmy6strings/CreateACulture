@@ -12,23 +12,23 @@ angular.module('app.factory', [])
     });
   };
 
-  //
-  var addBelief = function(category, belief) {
+  var getRandomBelief = function(category, itemId) {
     return $http({
       method: 'POST',
-      url: '/api/belief',
+      url: 'api/getrandombelief',
       data: {
-        name: category,
-        belief: belief
+        name: category
       }
     })
-    .then(function(response){
-      return response;
+    .then(function(response) {
+      console.log("Response.data: ", response.data);
+      return response.data;
     })
   };
 
   return {
-    getCategories: getCategories
+    getCategories: getCategories,
+    getRandomBelief: getRandomBelief
   }
 })
 
@@ -82,7 +82,7 @@ angular.module('app.factory', [])
       data: user
     })
     .then(function (resp) {
-       return resp.data.token;
+       return resp;
     });
   };
 
@@ -95,11 +95,61 @@ angular.module('app.factory', [])
     $location.path('/signin');
   };
 
+  var addBeliefsToUser = function(beliefsArray) {
+    var username = $window.localStorage.getItem('user');
+    return $http({
+      method: 'POST',
+      url: '/api/addbeliefs',
+      data: {
+        username: username,
+        beliefs: beliefsArray
+      }
+    })
+    .then(function(response){
+      return response;
+    })
+  };
+
+  var addBeliefToUser = function(beliefString) {
+    var username = $window.localStorage.getItem('user');
+    return $http({
+      method: 'POST',
+      url: '/api/addbelief',
+      data: {
+        username: username,
+        belief: beliefString
+      }
+    })
+    .then(function(response){
+      return response;
+    })
+  };
+
+  var updateAddedBelief = function(index, updated) {
+    console.log("Updated: ", updated);
+    var username = $window.localStorage.getItem('user');
+    return $http({
+      method: 'PUT',
+      url: 'api/updateaddedbelief',
+      data: {
+        username: username,
+        index: index,
+        updated: updated
+      }
+    })
+    .then(function(response) {
+      console.log("Response.data in updateAddedBelief: ", response.data);
+      return response.data;
+    })
+  };
 
   return {
     signin: signin,
     signup: signup,
     isAuth: isAuth,
-    signout: signout
+    signout: signout,
+    addBeliefsToUser: addBeliefsToUser,
+    addBeliefToUser: addBeliefToUser,
+    updateAddedBelief: updateAddedBelief
   };
 });

@@ -17,9 +17,10 @@ angular.module('app.auth', [])
 
   $scope.signup = function () {
     Auth.signup($scope.user)
-      .then(function (token) {
-        $window.localStorage.setItem('com.createaculture', token);
-        $location.path('/index.html');
+      .then(function (resp) {
+        $window.localStorage.setItem('com.createaculture', resp.data.token);
+        $window.localStorage.setItem('user', resp.data.user);        
+        $location.path('/firstseven');
         console.log("New user signed up!")
       })
       .catch(function (error) {
