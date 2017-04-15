@@ -76,6 +76,12 @@ angular.module('app.factory', [])
   // that JWT is then stored in localStorage as 'com.shortly'
   // after you signin/signup open devtools, click resources,
   // then localStorage and you'll see your token from the server
+  // function destroyUserCredentials() {
+  //   var authToken = undefined;
+  //   var isAuthenticated = false;
+  //   $http.defaults.headers.common.Authorization = undefined;
+  //   window.localStorage.removeItem('yourTokenKey');
+  // }
 
   ////////////user authentication////////////////////////////////////
   var signin = function (user) {
@@ -219,7 +225,6 @@ angular.module('app.factory', [])
     signin: signin,
     signup: signup,
     isAuth: isAuth,
-    signOut: signOut,
     deleteUser: deleteUser,
     getUserCategories: getUserCategories,
     removeUserCategories: removeUserCategories,

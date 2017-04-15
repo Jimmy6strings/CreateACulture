@@ -2,10 +2,12 @@ angular.module('app.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
+  $scope.token = [];
 
   $scope.signin = function () {
     Auth.signin($scope.user)
       .then(function (token) {
+        $scope.token.push(token);
         $window.localStorage.setItem('com.createaculture', token);
         $location.path('/');
         console.log("user signed in")
@@ -29,18 +31,11 @@ angular.module('app.auth', [])
       });
   };
 
-  $scope.signOut = function () {
-    console.log($scope.user)
-    Auth.signOut()
-      .then(function (resp) {
-         $window.localStorage.removeItem('com.createaculture', resp.token);
-         $location.path('/');
-        console.log('user has signed out!')
-
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  $scope.signout = function () {
+    var token = $scope.token.pop();
+      $window.localStorage.removeItem('com.createaculture', token);
+      $location.path('/');
+      console.log('user has signed out!')
   };
 
    $scope.facebook = {
