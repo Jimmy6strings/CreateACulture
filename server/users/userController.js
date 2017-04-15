@@ -1,4 +1,5 @@
 var jwt = require('jwt-simple');
+var session = require('express-session');
 var User = require('./userModel.js');
 var UserCategory = require('./userCategoriesModel.js');
 var mongoose = require('mongoose');
@@ -48,6 +49,7 @@ module.exports = {
   },
 
   signup: function (req, res, next) {
+    console.log(req.body);
     console.log("this is the username we want " + req.body.username)
     var username = req.body.username;
     var password = req.body.password;
@@ -90,7 +92,7 @@ module.exports = {
   },
 
   checkAuth: function (req, res, next) {
-    console.log('Request in CheckAuth: ', req);
+    console.log('Request in CheckAuth: ', req.body.data);
     var token = req.headers['x-access-token'];
     if (!token) {
       next(new Error('No token'));

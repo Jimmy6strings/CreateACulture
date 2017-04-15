@@ -106,11 +106,6 @@ angular.module('app.factory', [])
     return !!$window.localStorage.getItem('com.createaculture');
   };
 
-  var signout = function () {
-    $window.localStorage.removeItem('com.createaculture');
-    $location.path('/signin');
-  };
-
   var deleteUser = function (user) {
     console.log(user);
     return $http({
@@ -224,7 +219,7 @@ angular.module('app.factory', [])
     signin: signin,
     signup: signup,
     isAuth: isAuth,
-    signout: signout,
+    signOut: signOut,
     deleteUser: deleteUser,
     getUserCategories: getUserCategories,
     removeUserCategories: removeUserCategories,

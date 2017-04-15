@@ -18,8 +18,9 @@ angular.module('app.auth', [])
   $scope.signup = function () {
     Auth.signup($scope.user)
       .then(function (resp) {
-        $window.localStorage.setItem('com.createaculture', resp.data.token);
-        $window.localStorage.setItem('user', resp.data.user);
+        console.log(resp.data);
+        $window.localStorage.setItem('com.createaculture', resp.token);
+        $window.localStorage.setItem('user', resp.user);
         $location.path('/');
         console.log("New user signed up!")
       })
@@ -28,12 +29,14 @@ angular.module('app.auth', [])
       });
   };
 
-  $scope.signout = function () {
-    Auth.signout($scope.user)
-      .then(function (token) {
-        $window.localStorage.setItem('com.createaculture', token);
-        $location.path('/signin');
+  $scope.signOut = function () {
+    console.log($scope.user)
+    Auth.signOut()
+      .then(function (resp) {
+         $window.localStorage.removeItem('com.createaculture', resp.token);
+         $location.path('/');
         console.log('user has signed out!')
+
       })
       .catch(function (error) {
         console.log(error);

@@ -64,13 +64,20 @@
 
             <h2>Want to add your own to the list?</h2>
 
-            <br/>
+            <br>
 
+              <form>
+                <h4>Add A Category</h4>
+                <input type="text" name="addUserCategory" ng-submit="addUserCategories()">
+                <button class="btn-success">Add Category</button>
+              </form>
 
+            <br>
+            <h4>Add A Belief</h4>
             <div class="addToSevenBeliefs">
               <input type="text" name="addBelief" ng-model="addedBelief" ngMaxLength="240" required="String">
            <!--  <button class="btn-danger" ng-click="removeCategory(data, category)">Remove</button> -->
-                <button type="submit" ng-click="grabResponseAndAddToSevenBeliefs()" class="btn-primary">Submit</button>
+                <button type="submit" ng-click="grabResponseAndAddToSevenBeliefs()" class="btn-success">Submit</button>
                 <br/>
                 <br/>
                 <br/>

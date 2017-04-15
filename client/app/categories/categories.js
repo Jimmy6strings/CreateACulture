@@ -13,6 +13,7 @@ angular.module('app.categories', ['app.checklist-model'])
 // via html
   $scope.workable = [];
 
+  //renders all categories from categoriesController
   $scope.getAll = function() {
     Categories.getCategories().then(function(data){
       $scope.data = data;
@@ -26,12 +27,23 @@ angular.module('app.categories', ['app.checklist-model'])
       console.log(err);
     })
   };
-
+  //console.log's all categories
   $scope.showchoices = function() {
     console.log("chocies: ", $scope.choices);
   }
 
+  //renders all seven categories from categoriesController
   $scope.getAll();
+
+  //add a user category to the first seven list
+  $scope.addUserCategories = function(category) {
+    Auth.addUserCategories(category).then(function(success) {
+      console.log(success)
+    }).catch(function(err) {
+      console.log(err);
+    })
+  };
+
   $scope.obj = {};
 
   $scope.beliefDiv7 = true;
@@ -154,10 +166,10 @@ angular.module('app.categories', ['app.checklist-model'])
     $scope.addedBelief = null;
   };
 
-  $scope.removeCategory = function(list, item) {
+  $scope.removeUserCategory = function(list, item) {
       if(list.indexOf(item) !== -1) {
         var answer = list.splice(list.indexOf(item), 1);
-        Categories.removeCategory(item);
+        Categories.removeUserCategory(item);
       }
 
   }

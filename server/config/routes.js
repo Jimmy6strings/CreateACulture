@@ -37,6 +37,4 @@ module.exports = function(app, express) {
   //delete an added user category
   app.delete('/api/removeusercategory', userController.removeUserCategory);
 
-
-
 };
